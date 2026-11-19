@@ -1,0 +1,1745 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lads 相性診断 ⚽｜サッカーサークル8人のうち誰と一番気が合う？</title>
+  <meta name="description" content="サッカーサークル「Lads」の個性派メンバー8人のうち、あなたと一番相性がいいのは誰？全30問・7段階回答とドット絵キャラでわかる公式（？）相性診断！" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Lads 相性診断" />
+  <meta property="og:title" content="Lads 相性診断｜8人のうち誰と一番相性がいい？" />
+  <meta property="og:description" content="全30問に答えると、Ladsメンバー8人の中からあなたと一番気が合う相棒がドット絵キャラで判明！" />
+  <meta property="og:locale" content="ja_JP" />
+  <!-- サムネイル画像を使う場合は、同じフォルダに ogp.jpg を置いて下の2行のコメントを外してください -->
+  <!-- <meta property="og:image" content="https://あなたの公開URL/ogp.jpg" /> -->
+  <!-- <meta name="twitter:image" content="https://あなたの公開URL/ogp.jpg" /> -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Lads 相性診断｜8人のうち誰と一番相性がいい？" />
+  <meta name="twitter:description" content="全30問に答えると、Ladsメンバー8人の中からあなたと一番気が合う相棒がドット絵キャラで判明！" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2316a34a'/%3E%3Ccircle cx='16' cy='16' r='10' fill='%23fff' stroke='%23152822' stroke-width='2'/%3E%3Cpolygon points='16,11 20,14 18.5,19 13.5,19 12,14' fill='%23152822'/%3E%3C/svg%3E" />
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Zen+Maru+Gothic:wght@500;700;900&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-base: #f1fbf4;
+      --bg-dots: #cdebd7;
+      --ink-main: #162921;
+      --ink-sub: #4c665b;
+      --accent-blue: #16a34a;
+      --accent-amber: #f59e0b;
+      --border-retro: #162921;
+      --shadow-retro: #bce3c9;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Zen Maru Gothic', sans-serif;
+      background-color: var(--bg-base);
+      background-image: radial-gradient(var(--bg-dots) 1.4px, transparent 1.4px);
+      background-size: 20px 20px;
+      color: var(--ink-main);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    .font-pixel { font-family: 'DotGothic16', monospace; }
+    .pixel-canvas {
+      image-rendering: pixelated;
+      image-rendering: crisp-edges;
+    }
+    .retro-card {
+      background: #ffffff;
+      border: 2.5px solid var(--border-retro);
+      box-shadow: 4px 4px 0 var(--shadow-retro);
+      border-radius: 1.5rem;
+    }
+    .retro-card-soft {
+      background: #f9fefb;
+      border: 2px solid #b5dfc4;
+      box-shadow: 3px 3px 0 #d5f0de;
+      border-radius: 1.35rem;
+    }
+    .retro-btn {
+      border: 2.5px solid var(--border-retro);
+      box-shadow: 3px 3px 0 var(--border-retro);
+      transition: transform 0.12s ease, box-shadow 0.12s ease, background-color 0.15s ease;
+    }
+    .retro-btn:hover:not(:disabled) {
+      transform: translate(-1px, -1px);
+      box-shadow: 4px 4px 0 var(--border-retro);
+    }
+    .retro-btn:active:not(:disabled) {
+      transform: translate(2px, 2px);
+      box-shadow: 1px 1px 0 var(--border-retro);
+    }
+
+    /* Retro Pixel Soccer Pitch Hero Stage */
+    .hero-stage {
+      background-color: #34b362;
+      background-image: repeating-linear-gradient(
+        90deg,
+        #34b362 0px,
+        #34b362 44px,
+        #2da659 44px,
+        #2da659 88px
+      );
+      border: 3px solid var(--border-retro);
+      box-shadow: 6px 6px 0 var(--shadow-retro);
+      position: relative;
+      overflow: hidden;
+    }
+    .pitch-chalk-line {
+      position: absolute;
+      inset: 14px;
+      border: 3px solid rgba(255, 255, 255, 0.55);
+      border-radius: 1.2rem;
+      pointer-events: none;
+    }
+    .pitch-center-circle {
+      position: absolute;
+      width: 240px;
+      height: 240px;
+      border: 3px solid rgba(255, 255, 255, 0.45);
+      border-radius: 9999px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -56%);
+      pointer-events: none;
+    }
+    .pitch-halfway {
+      position: absolute;
+      left: 14px;
+      right: 14px;
+      top: 47%;
+      height: 3px;
+      background: rgba(255, 255, 255, 0.45);
+      pointer-events: none;
+    }
+    .device-tilt {
+      transform: rotate(-2deg);
+      transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .device-tilt:hover {
+      transform: rotate(-0.5deg) translateY(-2px);
+    }
+    .device-frame {
+      background: linear-gradient(145deg, #fde047 0%, #facc15 100%);
+      border: 3.5px solid #1e2438;
+      border-radius: 2.2rem;
+      box-shadow:
+        8px 10px 0 rgba(30, 36, 56, 0.22),
+        inset 0 0 0 3px #fef9c3;
+      position: relative;
+      z-index: 2;
+    }
+    .device-screen {
+      background: radial-gradient(circle at 50% 35%, #27324f 0%, #1a2138 75%, #131829 100%);
+      border-radius: 1.5rem;
+      border: 2.5px solid #121726;
+      position: relative;
+      overflow: hidden;
+    }
+    .device-screen::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        0deg,
+        rgba(255, 255, 255, 0.025) 0px,
+        rgba(255, 255, 255, 0.025) 1px,
+        transparent 1px,
+        transparent 3px
+      );
+      pointer-events: none;
+    }
+    .rpg-choice {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      padding: 0.55rem 0.9rem;
+      border-radius: 0.75rem;
+      transition: background-color 0.15s ease, color 0.15s ease;
+      cursor: pointer;
+    }
+    .rpg-choice .rpg-cursor {
+      opacity: 0;
+      color: #fde047;
+      transition: opacity 0.12s ease;
+    }
+    .rpg-choice:hover,
+    .rpg-choice:focus-visible,
+    .rpg-choice.active-choice {
+      background: rgba(253, 224, 71, 0.16);
+      color: #ffffff;
+      outline: none;
+    }
+    .rpg-choice:hover .rpg-cursor,
+    .rpg-choice:focus-visible .rpg-cursor,
+    .rpg-choice.active-choice .rpg-cursor {
+      opacity: 1;
+      animation: cursorBlink 0.9s steps(2, start) infinite;
+    }
+    @keyframes cursorBlink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.25; }
+    }
+
+    /* 7-Point Likert Circles */
+    .likert-btn {
+      transition: transform 0.15s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.15s ease, box-shadow 0.15s ease;
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 9999px;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+    .likert-btn:hover { transform: scale(1.12); }
+    .likert-btn:active { transform: scale(0.95); }
+    .likert-btn.agree {
+      border: 2.5px solid #16a34a;
+      background: rgba(22, 163, 74, 0.06);
+    }
+    .likert-btn.agree.selected {
+      background: #16a34a;
+      box-shadow: 0 0 0 4px rgba(22, 163, 74, 0.22);
+    }
+    .likert-btn.neutral {
+      border: 2.5px solid #8a95ad;
+      background: rgba(138, 149, 173, 0.06);
+    }
+    .likert-btn.neutral.selected {
+      background: #7b869e;
+      box-shadow: 0 0 0 4px rgba(123, 134, 158, 0.24);
+    }
+    .likert-btn.disagree {
+      border: 2.5px solid #ea580c;
+      background: rgba(234, 88, 12, 0.05);
+    }
+    .likert-btn.disagree.selected {
+      background: #ea580c;
+      box-shadow: 0 0 0 4px rgba(234, 88, 12, 0.22);
+    }
+    .likert-btn.selected::after {
+      content: '✓';
+      color: #ffffff;
+      font-weight: 900;
+      font-size: 0.85em;
+      line-height: 1;
+    }
+    .question-card.answered {
+      border-color: #16a34a;
+      background: #ffffff;
+    }
+    .question-card.unanswered-highlight {
+      border-color: #ef4444;
+      box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.2);
+    }
+    .fade-in { animation: fadeInUp 0.32s ease both; }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .toast-enter { animation: toastPop 0.26s cubic-bezier(0.22, 1, 0.36, 1) both; }
+    @keyframes toastPop {
+      from { opacity: 0; transform: translate(-50%, 14px); }
+      to { opacity: 1; transform: translate(-50%, 0); }
+    }
+  </style>
+</head>
+<body class="antialiased selection:bg-blue-200 selection:text-blue-950">
+
+  <!-- Top Navigation -->
+  <header class="sticky top-0 z-40 border-b-2 border-[#162921]/15 bg-[#f5fdf7]/92 backdrop-blur-md">
+    <div class="max-w-4xl mx-auto px-4 h-16 flex items-center justify-between gap-2">
+      <button id="navLogoBtn" type="button" class="flex items-center gap-2 text-left group">
+        <span class="w-9 h-9 rounded-xl bg-emerald-600 border-2 border-[#162921] text-white flex items-center justify-center shadow-[2px_2px_0_#162921] text-base group-hover:scale-105 transition">⚽</span>
+        <div class="leading-tight">
+          <div class="font-pixel text-base sm:text-lg tracking-wide text-[#162921]">Lads <span class="text-emerald-600">相性診断</span></div>
+        </div>
+      </button>
+
+      <nav class="flex items-center gap-1.5 sm:gap-2">
+        <button id="navQuizBtn" type="button" class="px-3.5 sm:px-4 py-1.5 rounded-full border-2 border-[#1e2438] text-xs sm:text-sm font-bold text-blue-700 bg-blue-50 hover:bg-blue-100 transition">診断する</button>
+        <button id="navDexBtn" type="button" class="px-3.5 sm:px-4 py-1.5 rounded-full border-2 border-[#1e2438] text-xs sm:text-sm font-bold text-[#1e2438] bg-white hover:bg-amber-50 transition">8人図鑑</button>
+      </nav>
+    </div>
+  </header>
+
+  <main id="appRoot" class="max-w-4xl mx-auto px-4 py-6 sm:py-9">
+
+    <!-- VIEW 1: LANDING -->
+    <section id="viewHome" class="fade-in space-y-8">
+      <div class="hero-stage rounded-[2rem] px-4 pt-9 pb-7 sm:px-8 sm:pt-11 sm:pb-9 flex flex-col items-center">
+        <!-- Pitch chalk markings -->
+        <div class="pitch-chalk-line"></div>
+        <div class="pitch-halfway"></div>
+        <div class="pitch-center-circle"></div>
+
+        <div class="hidden sm:flex items-center gap-1.5 absolute top-6 left-7 px-3 py-1 rounded-full bg-white/95 border-2 border-[#162921] font-pixel text-[11px] text-emerald-700 -rotate-6 shadow-[2px_2px_0_#162921] z-10">
+          <span>⚽</span><span>SOCCER CIRCLE LADS</span>
+        </div>
+        <div class="hidden sm:flex items-center gap-1 absolute top-6 right-7 px-3 py-1 rounded-full bg-yellow-200 border-2 border-[#162921] font-pixel text-[11px] text-[#162921] rotate-6 shadow-[2px_2px_0_#162921] z-10">
+          <span>✦</span><span>KICK OFF / 30Q</span>
+        </div>
+
+        <div class="relative z-10 flex items-center justify-center w-full max-w-[360px] py-2">
+          <div class="absolute inset-x-10 bottom-1 h-8 rounded-full bg-[#162921]/25 blur-md pointer-events-none"></div>
+
+          <div class="device-tilt relative">
+            <!-- Cute Soccer Ball Keychain Charm -->
+            <svg class="absolute -right-9 top-10 w-12 h-24 pointer-events-none z-0" viewBox="0 0 48 96" fill="none" aria-hidden="true">
+              <path d="M4 10 C20 10 24 22 24 38" stroke="#162921" stroke-width="3" stroke-linecap="round"/>
+              <circle cx="24" cy="44" r="4.5" fill="#fde047" stroke="#162921" stroke-width="2.5"/>
+              <circle cx="24" cy="66" r="14" fill="#ffffff" stroke="#162921" stroke-width="3"/>
+              <polygon points="24,58 30,62 28,69 20,69 18,62" fill="#162921"/>
+              <path d="M24 52 V58 M30 62 L36 60 M28 69 L32 76 M20 69 L16 76 M18 62 L12 60" stroke="#162921" stroke-width="2"/>
+            </svg>
+
+            <div class="device-frame w-[276px] sm:w-[300px] p-3">
+              <div class="w-16 h-1.5 rounded-full bg-[#1e2438]/30 mx-auto mb-2"></div>
+
+              <div class="device-screen px-5 py-6 sm:py-7 flex flex-col items-center text-center text-white min-h-[410px] justify-between">
+                <div class="w-full flex items-center justify-between text-[10px] font-pixel text-blue-200/60 px-1">
+                  <span>⚽ LADS FC-OS</span>
+                  <span>8 MEMBERS</span>
+                </div>
+
+                <div class="space-y-3 my-2 flex flex-col items-center">
+                  <div class="p-1.5 rounded-2xl bg-white/10 border border-white/15">
+                    <canvas id="heroMiniCanvas" class="pixel-canvas w-24 h-24 rounded-xl" width="128" height="128"></canvas>
+                  </div>
+                  <div>
+                    <h1 class="font-pixel text-2xl sm:text-[26px] tracking-widest text-yellow-300 drop-shadow">
+                      Lads 診断
+                    </h1>
+                    <p id="heroMemberTicker" class="font-pixel text-xs text-blue-200 mt-0.5 tracking-wider">誰と一番気が合う？</p>
+                  </div>
+                </div>
+
+                <div class="w-full space-y-4">
+                  <p class="font-pixel text-sm leading-relaxed text-blue-50 tracking-wide">
+                    クセ強メンバー8人の中で<br />
+                    あなたの相棒は誰だ！？
+                  </p>
+
+                  <div class="space-y-1.5 text-left font-pixel text-sm max-w-[196px] mx-auto">
+                    <button id="startQuizBtn" type="button" class="rpg-choice active-choice w-full text-yellow-100">
+                      <span class="rpg-cursor">▶</span>
+                      <span>診断をはじめる</span>
+                    </button>
+                    <button id="openDexFromHeroBtn" type="button" class="rpg-choice w-full text-white/75">
+                      <span class="rpg-cursor">▶</span>
+                      <span>8人メンバー図鑑</span>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="text-[10px] font-pixel text-white/40 pt-1">
+                  TAP TO START ★
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <p class="relative z-10 mt-7 text-center text-xs sm:text-sm font-bold text-[#162921] bg-white/92 border-2 border-[#162921] shadow-[3px_3px_0_#162921] rounded-2xl px-4 py-3 max-w-md leading-relaxed">
+          ⚽ サッカーサークル「Lads」公式（？）相性診断！<br />
+          30問にポチポチ答えるだけで、個性派8人の中から一番気が合う相棒がドット絵つきで判明します。
+        </p>
+      </div>
+
+      <!-- Saved Previous Result Banner -->
+      <div id="savedResultBanner" class="hidden retro-card p-4 sm:p-5 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+        <div class="flex flex-col sm:flex-row items-center gap-3.5">
+          <canvas id="savedResultCanvas" class="pixel-canvas w-16 h-16 rounded-2xl border-2 border-[#1e2438]" width="96" height="96"></canvas>
+          <div>
+            <div class="font-pixel text-xs text-blue-600">★ 前回の診断結果</div>
+            <div id="savedResultTitle" class="font-black text-base text-[#1e2438] mt-0.5"></div>
+          </div>
+        </div>
+        <button id="viewSavedResultBtn" type="button" class="retro-btn px-5 py-2 rounded-full bg-blue-600 text-white text-xs sm:text-sm font-bold">結果をもういちど見る</button>
+      </div>
+
+      <!-- 3 Axes Guide -->
+      <div class="retro-card p-6 sm:p-7 space-y-5 text-center">
+        <div class="space-y-1">
+          <div class="font-pixel text-xs text-blue-600 tracking-widest">★ 3 AXES × 8 MEMBERS ★</div>
+          <h2 class="font-pixel text-lg sm:text-xl text-[#1e2438]">相性を決める3つのLads軸</h2>
+        </div>
+
+        <div class="grid sm:grid-cols-3 gap-3.5 text-center">
+          <div class="retro-card-soft p-4 space-y-1">
+            <div class="font-pixel text-xs text-blue-600">01. ノリ・社交性</div>
+            <div class="font-pixel text-base text-[#1e2438]"><span class="text-blue-600">W</span> ワイワイ ⇄ マイペース <span class="text-orange-600">M</span></div>
+            <p class="text-xs text-[#576382] leading-relaxed">場を盛り上げる陽キャノリか、自分の世界を大事にするマイペース派か。</p>
+          </div>
+          <div class="retro-card-soft p-4 space-y-1">
+            <div class="font-pixel text-xs text-blue-600">02. 行動スタンス</div>
+            <div class="font-pixel text-base text-[#1e2438]"><span class="text-blue-600">K</span> きっちり ⇄ 自由人 <span class="text-orange-600">F</span></div>
+            <p class="text-xs text-[#576382] leading-relaxed">仕事や段取りをこなすシゴデキ派か、ノリと勢いで生きる自由人派か。</p>
+          </div>
+          <div class="retro-card-soft p-4 space-y-1">
+            <div class="font-pixel text-xs text-blue-600">03. トークのスパイス</div>
+            <div class="font-pixel text-base text-[#1e2438]"><span class="text-blue-600">H</span> ほっこり ⇄ スパイシー <span class="text-orange-600">S</span></div>
+            <p class="text-xs text-[#576382] leading-relaxed">優しさ・包容力で癒やされたいか、毒舌やノンデリの刺激で笑いたいか。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIEW 2: QUIZ -->
+    <section id="viewQuiz" class="hidden fade-in max-w-2xl mx-auto space-y-5">
+      <div class="sticky top-16 z-30 -mx-4 px-4 py-3 bg-[#f1fbf4]/95 backdrop-blur-md border-b-2 border-[#162921]/10">
+        <div class="flex items-center justify-between text-xs font-bold mb-2">
+          <div class="flex items-center gap-2">
+            <span id="stageBadge" class="font-pixel px-2.5 py-1 rounded-full bg-blue-100 text-blue-700 border border-blue-300">Stage 1: 普段のテンション</span>
+            <span id="pageIndicator" class="font-pixel text-[#576382]">PAGE 1 / 6</span>
+          </div>
+          <span id="progressCount" class="font-pixel text-blue-600">0 / 30 回答済み</span>
+        </div>
+        <div class="w-full h-3 bg-white rounded-full overflow-hidden border-2 border-[#1e2438]">
+          <div id="progressBar" class="h-full bg-gradient-to-r from-emerald-500 via-green-500 to-yellow-400 transition-all duration-300" style="width: 0%"></div>
+        </div>
+      </div>
+
+      <div class="retro-card-soft px-4 py-2.5 flex items-center justify-between text-xs font-pixel">
+        <span class="text-blue-600">◀ そう思う</span>
+        <span class="text-[#7b869e]">どちらとも言えない</span>
+        <span class="text-orange-600">そう思わない ▶</span>
+      </div>
+
+      <div id="questionsContainer" class="space-y-4"></div>
+
+      <div class="flex flex-wrap items-center justify-between gap-3 pt-2 pb-6">
+        <button id="prevPageBtn" type="button" class="retro-btn px-5 py-2.5 rounded-full bg-white text-[#1e2438] font-bold text-sm disabled:opacity-40 disabled:cursor-not-allowed">
+          ◀ 前の5問
+        </button>
+
+        <div class="flex items-center gap-2.5">
+          <button id="randomFillBtn" type="button" class="px-3 py-2 rounded-full text-xs font-bold text-[#6a7691] hover:text-blue-600 hover:bg-blue-100/60 transition">
+            お試しランダム回答
+          </button>
+          <button id="nextPageBtn" type="button" class="retro-btn px-7 py-2.5 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm">
+            次の5問へ ▶
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIEW 3: RESULT PAGE -->
+    <section id="viewResult" class="hidden fade-in max-w-3xl mx-auto space-y-6">
+      <div id="resultHeroCard" class="retro-card overflow-hidden">
+        <div id="resultBanner" class="p-6 sm:p-9 text-white text-center relative overflow-hidden">
+          <div class="relative z-10 flex flex-col items-center space-y-3.5">
+            <div id="resultContextLabel" class="font-pixel text-xs tracking-widest px-3 py-1 rounded-full bg-black/25 border border-white/25">YOUR BEST MATCH IN LADS</div>
+
+            <div class="p-2.5 rounded-3xl bg-white/18 backdrop-blur-sm border-2 border-white/40 shadow-lg">
+              <canvas id="resultSpriteCanvas" class="pixel-canvas rounded-2xl w-44 h-44 sm:w-48 sm:h-48" width="192" height="192"></canvas>
+            </div>
+
+            <div id="resultRoleBadge" class="font-pixel text-xs px-3.5 py-1 rounded-full bg-black/35 border border-white/25"></div>
+
+            <div class="space-y-1">
+              <div id="resultCode" class="font-pixel text-3xl sm:text-4xl tracking-widest text-yellow-200 drop-shadow"></div>
+              <h2 id="resultName" class="text-3xl sm:text-4xl font-black tracking-tight"></h2>
+              <p id="resultTitle" class="text-sm sm:text-base font-bold text-white/90"></p>
+            </div>
+
+            <p id="resultQuote" class="max-w-xl text-sm sm:text-base font-bold leading-relaxed bg-black/20 rounded-2xl px-5 py-3.5 border border-white/20"></p>
+
+            <div class="flex flex-wrap justify-center gap-2.5 pt-2">
+              <button id="copyResultBtn" type="button" class="retro-btn px-4 py-2 rounded-full bg-white text-[#1e2438] font-bold text-xs sm:text-sm">
+                📋 診断結果をコピー
+              </button>
+              <button id="retakeQuizBtn" type="button" class="retro-btn px-4 py-2 rounded-full bg-yellow-400 text-[#1e2438] font-bold text-xs sm:text-sm">
+                ↺ もう一度診断する
+              </button>
+              <button id="backToMyResultBtn" type="button" class="hidden retro-btn px-4 py-2 rounded-full bg-blue-900 text-white font-bold text-xs sm:text-sm">
+                ◀ 自分の結果に戻る
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3 Axis Breakdown -->
+        <div class="p-6 sm:p-7 bg-white border-t-2 border-[#1e2438]/15">
+          <div class="text-center mb-5">
+            <h3 class="font-pixel text-base sm:text-lg text-[#1e2438]">★ 3つのLads相性パラメーター ★</h3>
+            <span id="axisModeNote" class="text-xs font-bold text-[#7b869e]">あなたの回答バランス</span>
+          </div>
+          <div id="axisBarsContainer" class="space-y-4 max-w-xl mx-auto"></div>
+        </div>
+      </div>
+
+      <!-- Member Profile -->
+      <div class="retro-card p-6 sm:p-7 space-y-3">
+        <div class="flex items-center justify-center gap-2">
+          <span class="font-pixel text-blue-600">★</span>
+          <h3 class="font-pixel text-lg sm:text-xl text-[#1e2438]">メンバー徹底解剖</h3>
+          <span class="font-pixel text-blue-600">★</span>
+        </div>
+        <p id="resultBio" class="text-sm sm:text-[15px] text-[#35405c] leading-relaxed"></p>
+      </div>
+
+      <!-- Animated Pixel Vignette #1: Lads Tatami Camp Room Scene! -->
+      <div class="flex flex-col items-center">
+        <div class="retro-card-soft px-4 py-3.5 w-full max-w-md flex flex-col items-center gap-2 text-center bg-[#f8fbff]">
+          <canvas id="vignetteScene1" class="pixel-canvas w-full max-w-[320px] h-auto rounded-xl border-2 border-[#1e2438]" width="320" height="128"></canvas>
+          <p id="vignetteCaption1" class="font-pixel text-xs text-blue-700"></p>
+        </div>
+      </div>
+
+      <!-- Why You Click + Hangout Vibe -->
+      <div class="retro-card p-6 sm:p-7 bg-gradient-to-br from-[#eff6ff] to-[#fefce8] space-y-4">
+        <div class="text-center">
+          <h3 class="font-pixel text-lg sm:text-xl text-[#1e2438]">🤝 あなたと相性抜群な理由</h3>
+        </div>
+        <p id="resultMatchReason" class="text-sm sm:text-[15px] text-[#2c3652] leading-relaxed"></p>
+        <div class="pt-3 border-t-2 border-dashed border-blue-200">
+          <div class="font-pixel text-xs text-blue-700 mb-1.5 text-center">🎉 2人で遊ぶとこうなる！</div>
+          <p id="resultHangout" class="text-sm font-bold text-[#1e2438] bg-white rounded-2xl px-4 py-3 border-2 border-blue-200 text-center"></p>
+        </div>
+      </div>
+
+      <!-- Stats + Pros & Caution -->
+      <div class="grid md:grid-cols-2 gap-5">
+        <div class="retro-card p-6 space-y-4">
+          <h3 class="font-pixel text-base text-[#1e2438] text-center">📊 メンバー能力チャート</h3>
+          <div id="metersContainer" class="space-y-3"></div>
+        </div>
+
+        <div class="retro-card p-6 space-y-4">
+          <div>
+            <h4 class="font-pixel text-sm text-blue-700 mb-2 text-center">✨ 推せる・愛されポイント</h4>
+            <ul id="resultPros" class="space-y-1.5 text-sm text-[#35405c]"></ul>
+          </div>
+          <div class="pt-3 border-t-2 border-dashed border-blue-100">
+            <h4 class="font-pixel text-sm text-orange-600 mb-2 text-center">⚠️ 取り扱い注意ポイント</h4>
+            <ul id="resultCautions" class="space-y-1.5 text-sm text-[#35405c]"></ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Animated Pixel Vignette #2: Duo Scene with Best Club Buddy -->
+      <div class="flex flex-col items-center">
+        <div class="retro-card-soft px-4 py-3.5 w-full max-w-md flex flex-col items-center gap-2 text-center bg-[#f8fbff]">
+          <canvas id="vignetteScene2" class="pixel-canvas w-full max-w-[320px] h-auto rounded-xl border-2 border-[#1e2438]" width="320" height="120"></canvas>
+          <p id="vignetteCaption2" class="font-pixel text-xs text-indigo-700"></p>
+        </div>
+      </div>
+
+      <!-- Other Compatible / Chaos Members -->
+      <div class="retro-card p-6 sm:p-7 space-y-5">
+        <div class="text-center space-y-1">
+          <h3 class="font-pixel text-xl text-[#1e2438]">★ Lads内・相関＆相性マップ ★</h3>
+          <p class="text-xs sm:text-sm text-[#576382]">カードをタップすると、他のメンバーの詳細プロフィールも見られます。</p>
+        </div>
+        <div id="compatibilityGrid" class="grid sm:grid-cols-2 gap-4"></div>
+      </div>
+    </section>
+
+    <!-- VIEW 4: ALL 8 MEMBERS ENCYCLOPEDIA (Grouped by W vs M Attribute!) -->
+    <section id="viewDex" class="hidden fade-in space-y-7">
+      <div class="text-center space-y-3">
+        <div class="font-pixel text-xs text-blue-600 tracking-widest">★ LADS MEMBER ENCYCLOPEDIA ★</div>
+        <h2 class="font-pixel text-2xl sm:text-3xl text-[#1e2438]">属性別・Lads全8メンバー図鑑</h2>
+        <p class="text-xs sm:text-sm text-[#576382]">「ワイワイ陽キャ組」と「マイペース独自ワールド組」に分けてまとめています。</p>
+
+        <div id="dexFilterBar" class="flex flex-wrap justify-center gap-2 pt-1">
+          <button type="button" data-group="ALL" class="dex-filter-btn px-3.5 py-1.5 rounded-full border-2 border-[#1e2438] text-xs font-bold bg-[#1e2438] text-white transition">すべて表示 (8)</button>
+          <button type="button" data-group="W" class="dex-filter-btn px-3.5 py-1.5 rounded-full border-2 border-[#1e2438] text-xs font-bold bg-white text-blue-700 hover:bg-blue-50 transition">🔥 ワイワイ陽キャ組 (W)</button>
+          <button type="button" data-group="M" class="dex-filter-btn px-3.5 py-1.5 rounded-full border-2 border-[#1e2438] text-xs font-bold bg-white text-orange-700 hover:bg-orange-50 transition">🌙 マイペース独自組 (M)</button>
+        </div>
+      </div>
+
+      <div id="dexGrid" class="space-y-8"></div>
+    </section>
+
+  </main>
+
+  <div id="toast" class="hidden fixed bottom-6 left-1/2 -translate-x-1/2 z-50 px-5 py-3 rounded-full bg-[#1e2438] border-2 border-yellow-300 text-white font-pixel text-xs sm:text-sm shadow-xl"></div>
+
+  <footer class="max-w-4xl mx-auto px-4 py-8 text-center font-pixel text-xs text-[#73809e]">
+    ⚽ Lads 相性診断 — サッカーサークル同級生8人メンバー公式（？）エンタメ診断 ⚽
+  </footer>
+
+  <script>
+    // =========================================================================
+    // 1. DATA: 2 ATTRIBUTE GROUPS, 30 QUESTIONS, AND 8 LADS MEMBERS
+    // =========================================================================
+
+    const GROUP_ORDER = ['W', 'M'];
+
+    const GROUPS = {
+      W: {
+        id: 'W',
+        icon: '🔥',
+        name: 'ワイワイ陽キャ・盛り上げ組 (W系)',
+        tagline: 'ノリ・テンション・会話量で場を回す4人',
+        desc: '集まればとりあえず声が大きくて笑いが絶えないLadsのエンジン組。シゴデキな大黒柱から遅刻魔・お調子者まで粒ぞろい！',
+        sectionBg: '#eff6ff',
+        borderCol: '#3b82f6',
+        chipBg: '#dbeafe',
+        chipText: '#1d4ed8'
+      },
+      M: {
+        id: 'M',
+        icon: '🌙',
+        name: 'マイペース・独自ワールド組 (M系)',
+        tagline: 'ゆるさ・知性・天然ボケで沼らせる4人',
+        desc: '自分のペースを崩さず、話せば話すほどクセになるLadsの個性派組。優等生から姫枠オタク、予測不能な天然まで勢ぞろい！',
+        sectionBg: '#fff7ed',
+        borderCol: '#f97316',
+        chipBg: '#ffedd5',
+        chipText: '#c2410c'
+      }
+    };
+
+    // 30 Questions: 10 per axis (WM: 10, KF: 10, HS: 10)
+    const QUESTIONS = [
+      // Stage 1: Q1-10 (普段のキャンパス＆サークル編)
+      { id: 1, stage: 1, axis: 'WM', dir: 1, text: '初対面が多い場でも、自分から話しかけたり場を盛り上げたりする方だ。' },
+      { id: 2, stage: 1, axis: 'KF', dir: 1, text: 'サークルの仕事や提出物は、締切前にきっちり仕上げないと落ち着かない。' },
+      { id: 3, stage: 1, axis: 'HS', dir: 1, text: '友達にはキツいツッコミより、ニコニコ優しく受け止めてくれる人を選びがちだ。' },
+      { id: 4, stage: 1, axis: 'WM', dir: -1, text: '大人数でずっと騒ぐより、気心の知れた人とマイペースに過ごす方が楽だ。' },
+      { id: 5, stage: 1, axis: 'KF', dir: -1, text: '面倒なことはつい後回しにしてしまい、「なんとかなるでしょ」で生きている。' },
+      { id: 6, stage: 1, axis: 'HS', dir: -1, text: 'ちょっとノンデリカシーだったり毒舌だったりする人の方が、本音が見えて面白い。' },
+      { id: 7, stage: 1, axis: 'WM', dir: 1, text: 'ひとりで過ごす時間が多いと寂しくなるので、誰かと連絡したり会ったりしたい。' },
+      { id: 8, stage: 1, axis: 'KF', dir: 1, text: '遊ぶ計画やお金の管理は、誰かに丸投げせずしっかり把握しておきたい。' },
+      { id: 9, stage: 1, axis: 'HS', dir: 1, text: '一緒にいて安心感がある「器が大きい人」や「気が回る人」に強く惹かれる。' },
+      { id: 10, stage: 1, axis: 'WM', dir: -1, text: '自分からガンガン喋りかけるのは苦手だが、好きな話題になると急に饒舌になる。' },
+
+      // Stage 2: Q11-20 (飲み会・合宿・遊びのノリ編)
+      { id: 11, stage: 2, axis: 'KF', dir: -1, text: '集合時間に5〜10分遅れても「まあいいか」と笑い飛ばせるタイプだ。' },
+      { id: 12, stage: 2, axis: 'HS', dir: -1, text: '会話ではボケとツッコミが飛び交い、たまにブラックな笑いが混ざるくらいが最高だ。' },
+      { id: 13, stage: 2, axis: 'WM', dir: 1, text: '合宿やイベントでは、声が大きくてテンション高めのグループに自然と混ざる。' },
+      { id: 14, stage: 2, axis: 'KF', dir: 1, text: '遊ぶときは全力で遊ぶけど、やるべき役職やシフトは絶対に穴をあけない。' },
+      { id: 15, stage: 2, axis: 'HS', dir: 1, text: '飲み会や集まりでは、イジり合うより平和にニコニコ笑っていられる空気が好きだ。' },
+      { id: 16, stage: 2, axis: 'WM', dir: -1, text: 'みんなで騒いでいるとき、一歩引いてツッコんだりニコニコ眺めているポジションが落ち着く。' },
+      { id: 17, stage: 2, axis: 'KF', dir: -1, text: '予定を立てるより「今から行こうぜ！」の突発的なノリやフッ軽さが好きだ。' },
+      { id: 18, stage: 2, axis: 'HS', dir: -1, text: '下ネタやちょっと際どい冗談も、ノリが良ければ普通に笑って乗れる方だ。' },
+      { id: 19, stage: 2, axis: 'WM', dir: 1, text: '相手との共通点をすぐ見つけて仲良くなるのが得意、またはそういう人といると楽しい。' },
+      { id: 20, stage: 2, axis: 'KF', dir: 1, text: '部屋や持ち物はわりと綺麗に整えておきたいし、生活リズムもちゃんとしていたい。' },
+
+      // Stage 3: Q21-30 (ぶっちゃけ本音・Lads適性チェック編)
+      { id: 21, stage: 3, axis: 'HS', dir: 1, text: 'イライラしても表に出さず、基本めったに怒らない穏やかな人が一番信頼できる。' },
+      { id: 22, stage: 3, axis: 'WM', dir: -1, text: '「何考えてるか分からない」「ちょっとヘンテコ」と言われるくらいクセがある人が好きだ。' },
+      { id: 23, stage: 3, axis: 'KF', dir: -1, text: '友達と一緒にいると楽しくなって、つい作業や勉強をサボってしまうことがある。' },
+      { id: 24, stage: 3, axis: 'HS', dir: -1, text: '仲良くなればなるほど、お互いに容赦なく毒を吐き合える関係が理想だ。' },
+      { id: 25, stage: 3, axis: 'WM', dir: 1, text: '先輩や後輩との距離を詰めるのがうまく、人間関係の輪を広げるのが好きだ。' },
+      { id: 26, stage: 3, axis: 'KF', dir: 1, text: '口先だけでなく、いざというときに周りを引っ張れる頼りがい・シゴデキ感を重視する。' },
+      { id: 27, stage: 3, axis: 'HS', dir: 1, text: '誰かが空回りしていたり天然なミスをしても、「可愛いな」とほっこり見守れる。' },
+      { id: 28, stage: 3, axis: 'WM', dir: -1, text: '推し活やスポーツ観戦・勉強など、自分の「沼」にマイペースに没頭する時間が欠かせない。' },
+      { id: 29, stage: 3, axis: 'KF', dir: -1, text: '約束が少しルーズだったり気分屋だったりしても、面白ければ全部許せてしまう。' },
+      { id: 30, stage: 3, axis: 'HS', dir: -1, text: '平和で無難な人より、ちょっと扱いにくくてエピソードが絶えない人に沼りやすい。' }
+    ];
+
+    const MEMBERS = {
+      WKH: {
+        code: 'WKH', group: 'W',
+        name: 'モモカ', role: '会長',
+        title: 'Ladsの大黒柱・愛媛弁の白ギャル会長',
+        quote: '「大丈夫やって〜！とりあえず飲んで笑っとこ！仕事は全部うちがまとめとくけん！」',
+        vignetteNote: '合宿の和室でもニコニコ仕切る、頼もしすぎる大黒柱会長！',
+        gradient: 'linear-gradient(135deg, #be185d 0%, #ec4899 55%, #f472b6 100%)',
+        bio: 'サークルの会長にして圧倒的大黒柱。黒髪白ギャル＆愛媛弁の親しみやすさとコミュ力お化けぶりで、誰とでも一瞬で打ち解けます。おバカ可愛い発言や恋バナ・お酒・ちょっとスケベなノリで場を沸かせつつ、実はサークル内で一番物事が見えていて仕事は超完璧。ストレス耐性MAXで全然怒らない最強のリーダーです。',
+        matchReason: '明るくノリが良くて、それでいて「ちゃんとやることはやる」バランス感覚を持つあなたとは価値観が100%一致！モモカの圧倒的な包容力とギャルマインドのおかげで、気を遣わずに何でも話せる最高の相棒になれます。',
+        hangout: '居酒屋で愛媛弁混じりの恋バナ＆お酒を浴びながら爆笑しつつ、次のサークル企画もノリでサクッと決めちゃう神回になります。',
+        meters: { commu: 99, work: 96, chaos: 74, kind: 98 },
+        pros: ['ストレス耐性MAXで滅多に怒らない器の大きさ', 'ギャル口調なのに実は一番周りが見えてる超シゴデキ', 'ニコニコ笑顔＆エクボで場を明るくする圧倒的陽パワー'],
+        cautions: ['運動音痴なのに腕力が強いので物理ツッコミに注意', 'お酒と恋バナが入るとテンションが無限に上がる'],
+        compat: {
+          sub: { code: 'WKS', label: '🌟 もう1人の好相性', reason: 'シゴデキ＆盛り上げ役同士のコウヤとは、仕事も遊びもテンポ抜群のゴールデンコンビ！' },
+          chaos: { code: 'WFS', label: '💥 一緒にいるとカオス', reason: 'お調子者のコウキと組むと、ノンデリ発言に爆笑しながら収拾がつかなくなりがち。' }
+        },
+        sprite: {
+          bg: '#ffd6eb', hair: '#231d29', hairHi: '#4a3d57', hairSh: '#120f17',
+          eye: '#3b2438', skin: '#ffe4d4', top: '#18181b', topAccent: '#ffffff', pants: '#18181b',
+          hairStyle: 'long_gyaru', expr: 'dimple_smile', acc: 'pink_clip', prop: 'drink'
+        }
+      },
+      WKS: {
+        code: 'WKS', group: 'W',
+        name: 'コウヤ', role: '会計担当',
+        title: '7.5頭身のニコニコ毒舌・ディズニー会計',
+        quote: '「え、それマジで言ってんの？（満面の笑み）…あ、今月ディズニー行きすぎて金欠だわ」',
+        vignetteNote: '和室で巨大プリンを抱えながら、ニコニコ顔で鋭いツッコミ中！',
+        gradient: 'linear-gradient(135deg, #1d4ed8 0%, #2563eb 55%, #60a5fa 100%)',
+        bio: '脅威の7.5頭身＆ハーフ顔でずっとニコニコしている超温厚な会計担当。話しかけやすくてボケもツッコミもキレッキレ、運動神経抜群で仕事もできるハイスペック…かと思いきや、意外と毒舌＆下ネタ好きで、バ畜なのにディズニーマニアすぎて常に金欠という愛すべきギャップの塊です。',
+        matchReason: 'テンポの良いボケツッコミやちょっとした毒舌を楽しめるあなたにドンピシャ！きっちり会計をこなす頼もしさがありつつ、友達といると急にサボり癖が出る人間味にも思わず笑ってしまいます。',
+        hangout: 'シラフ（お酒激弱）のまま朝まで下ネタと毒舌ボケを連発し、気づいたらディズニーの熱弁を聞いて爆笑しているはず。',
+        meters: { commu: 94, work: 90, chaos: 78, kind: 92 },
+        pros: ['ずっとニコニコしていて初対面でも秒で安心できる', '運動神経抜群＆会計管理も完璧なシゴデキぶり', 'ボケもツッコミもハイレベルで会話が絶対にダレない'],
+        cautions: ['お酒がめちゃくちゃ弱いので飲み会ではソフトドリンク死守', 'バ畜で予定が合いにくい＆友達がいるとサボり癖発動'],
+        compat: {
+          sub: { code: 'WKH', label: '🌟 もう1人の好相性', reason: '大黒柱のモモカとは、Ladsの運営も飲み会の笑いも支え合う最強タッグ。' },
+          chaos: { code: 'MFS', label: '💥 一緒にいるとカオス', reason: '天然ボケ＆隠れ毒舌のアカネと喋ると、ボケと毒舌の応酬で腹筋が崩壊します。' }
+        },
+        sprite: {
+          bg: '#dbeafe', hair: '#221f2b', hairHi: '#474259', hairSh: '#110f17',
+          eye: '#1e293b', skin: '#f7d5be', top: '#1e2952', topAccent: '#dc2626', pants: '#18181b',
+          hairStyle: 'natural', expr: 'happy', acc: 'none', prop: 'pudding'
+        }
+      },
+      WFH: {
+        code: 'WFH', group: 'W',
+        name: 'コウワ', role: '合宿担当',
+        title: '声デカ寂しがり屋・元野球部の合宿番長',
+        quote: '「ごめん今起きた！すぐ行くわ！！…てか今日ひま？みんなでどっか行こうぜ！」',
+        vignetteNote: 'デニムジャケット姿で野球ボールを弾ませながら、みんなを招集中！',
+        gradient: 'linear-gradient(135deg, #0369a1 0%, #0284c7 55%, #38bdf8 100%)',
+        bio: '坊主×細い目×濃い青のデニムジャケットがトレードマークの元野球部・合宿担当。アウトドア派で力持ち、声が大きくてコミュ力抜群のムードメーカーです。相手との共通点を見つけるのがうまく、女の子や年下には超優しい綺麗好き。ただし孤独が嫌いな寂しがり屋で、遅刻と約束破りはもはや持ちネタレベル。',
+        matchReason: '細かいルールより「一緒にいて楽しいノリ」と温かさを大事にするあなたとは相性抜群！遅刻されても「まあコウワだしな笑」と許せるおおらかさがあれば、一番アクティブで楽しい大学生活を送れます。',
+        hangout: '30分遅刻して登場したあと、全力のアウトドア遊び→野球観戦→そのままゲーム大会までノンストップで連れ回されます。',
+        meters: { commu: 95, work: 62, chaos: 84, kind: 86 },
+        pros: ['誰とでもすぐ共通点を見つけて仲良くなれるコミュ力', '女の子・年下への圧倒的な優しさとムードメーカー気質', 'アウトドアもゲームも全力で楽しめるタフさ＆綺麗好き'],
+        cautions: ['遅刻常習＆約束破りがちなので集合時間は30分早めに伝えるのが吉', '同格以下と判定されるとちょっと舐められるので要注意'],
+        compat: {
+          sub: { code: 'MFH', label: '🌟 もう1人の好相性', reason: '何されても怒らないオウタなら、遅刻もハイテンションも全部笑顔で受け止めてくれます。' },
+          chaos: { code: 'MKS', label: '💥 一緒にいるとカオス', reason: '納期厳守のカサネと合宿準備をすると、時間感覚の違いでヒヤヒヤする場面も！？' }
+        },
+        sprite: {
+          bg: '#e0f2fe', hair: '#262129', hairHi: '#4a4252', hairSh: '#141117',
+          eye: '#1e2438', skin: '#f5cfb6', top: '#1e3a8a', topAccent: '#93c5fd', pants: '#6b7280',
+          hairStyle: 'buzz', expr: 'narrow_smile', acc: 'none', prop: 'baseball'
+        }
+      },
+      WFS: {
+        code: 'WFS', group: 'W',
+        name: 'コウキ', role: 'イベント係',
+        title: '愛されノンデリ・スマホ中毒のお調子者',
+        quote: '「先輩マジ最高っすわ！！…あ、俺それ後でやるって！（スマホいじりながらニヤニヤ）」',
+        vignetteNote: '猫背でスマホをいじりながら、ニヤニヤ顔で次のイタズラを企み中…',
+        gradient: 'linear-gradient(135deg, #b45309 0%, #f59e0b 55%, #fbbf24 100%)',
+        bio: '軽めの茶髪マッシュにニヤニヤ顔、グレーのスウェット×黒パンツが定番のイベント係。ノンデリカシーでガサツ、後回し癖あり、キレ症でテンションの高低差も激しい…のに、それ以上に面白すぎて全員から愛されてしまう奇跡のキャラ！実はお金持ちで後輩の面倒見が良く、一度気に入った人や食べ物には一途に愛を注ぎます。',
+        matchReason: '無難な優等生より「クセが強くて笑える人」に惹かれるあなたにピッタリ！ノンデリ発言も「また言ってるよ笑」とツッコめるノリがあれば、コウキの『気に入った相手への一途な愛』を一身に受けられます。',
+        hangout: '先輩に露骨にゴマをすった直後に後輩に気前よく奢り、スマホをいじりながら一生同じ推しグルメを食べに行くカオス旅に。',
+        meters: { commu: 88, work: 48, chaos: 98, kind: 72 },
+        pros: ['ノンデリすら笑いに変えてしまう圧倒的な愛され力', '一度気に入った人や食べ物に注ぐ一途すぎる愛情', 'お金持ち＆後輩の面倒見が抜群にいい太っ腹さ'],
+        cautions: ['家事スキルゼロ＆後回し癖＆たまにキレ症スイッチが入る', '距離が近すぎると「臭い」ネタが炸裂する可能性あり'],
+        compat: {
+          sub: { code: 'MFH', label: '🌟 もう1人の好相性', reason: '同じイベント係のオウタは、コウキの暴走を一切怒らず受け流せる唯一のストッパー！' },
+          chaos: { code: 'MFS', label: '💥 一緒にいるとカオス', reason: '独特の雰囲気＆意味不明発言のアカネと並ぶと、周囲が置いてけぼりの独自ワールドに。' }
+        },
+        sprite: {
+          bg: '#fef3c7', hair: '#6e473b', hairHi: '#966556', hairSh: '#472c24',
+          eye: '#261b18', skin: '#f8d8c2', top: '#9ca3af', topAccent: '#e5e7eb', pants: '#1f2937',
+          hairStyle: 'mash', expr: 'smirk', acc: 'none', prop: 'phone'
+        }
+      },
+      MKH: {
+        code: 'MKH', group: 'M',
+        name: 'ナナミ', role: 'SNS広報担当',
+        title: 'いい匂いの清楚姫枠・テキパキ推し活オタク',
+        quote: '「あ、それ私がやりますね！（空回り）…えっ、推しの話していいんですか！？実はですね…」',
+        vignetteNote: '白いモコモコ服でペンライトを振りながら、推し愛を熱弁中♪',
+        gradient: 'linear-gradient(135deg, #db2777 0%, #f472b6 55%, #fbcfe8 100%)',
+        bio: '黒髪ロング×白モコモコ服×低身長というザ・清楚系ビジュアルで、Ladsの姫枠＆SNS広報を担当。男子から「いい匂いがする」と噂される癒やしオーラの持ち主ですが、中身は超オタクで笑いのツボも独特！自分からはあまり話しかけないのに、こちらから振るとマシンガントークが始まります。先生を目指してテキパキ動く努力家な一面も魅力。',
+        matchReason: '落ち着いたペースと気遣いを大切にするあなたとは、居心地の良さが段違い！ナナミのちょっとした空回りも愛おしく見守れて、オタクトークやマイペースな時間をお互いに尊重し合えます。',
+        hangout: 'おしゃれカフェでSNS用の映え写真を撮りつつ、推しの話になった瞬間から3時間ノンストップで語り合う平和すぎる休日。',
+        meters: { commu: 64, work: 88, chaos: 52, kind: 96 },
+        pros: ['ザ・清楚なビジュアル＆いい匂いの圧倒的姫枠オーラ', '気が回る優しさと、先生を目指してテキパキ動く真面目さ', '一度打ち解けるとめちゃくちゃ喋ってくれる可愛いギャップ'],
+        cautions: ['気が回りすぎてたまに可愛く空回りしてしまう', '普段はインドアなのに推し活の遠征フットワークだけ異常に軽い'],
+        compat: {
+          sub: { code: 'MFH', label: '🌟 もう1人の好相性', reason: '聞き上手なオウタなら、ナナミの止まらないオタクトークも穏やかに聞いてくれます。' },
+          chaos: { code: 'WFH', label: '💥 一緒にいるとカオス', reason: '声デカ＆アウトドア全開のコウワに振り回されて、ちょっと目が回りそうになることも。' }
+        },
+        sprite: {
+          bg: '#fce7f3', hair: '#332421', hairHi: '#5c433e', hairSh: '#1c1311',
+          eye: '#3b2421', skin: '#ffe8dc', top: '#ffffff', topAccent: '#27272a', pants: '#cbd5e1',
+          hairStyle: 'long_seiso', expr: 'seiso', acc: 'ribbon_top', prop: 'penlight'
+        }
+      },
+      MKS: {
+        code: 'MKS', group: 'M',
+        name: 'カサネ', role: '副会長',
+        title: '丸メガネのシゴデキ副会長・酒癖豹変インテリ',
+        quote: '「納期もクオリティも完璧に終わらせたよ。…え、今の発言キツかった？（無自覚）」',
+        vignetteNote: '黒縁丸メガネをクイッと上げながら、サークルの企画書を高速処理中…',
+        gradient: 'linear-gradient(135deg, #4c1d95 0%, #6d28d9 55%, #a78bfa 100%)',
+        bio: '小顔×黒縁丸メガネ×ストレートセンター分け、ダボ袖のワインレッド服が似合う超勉強家の副会長。お金の扱いも上手な金持ちで、仕事を任せれば納期もクオリティも100点満点のシゴデキです。基本は優しくて人付き合いに悩む可愛い一面もあるのに、シラフでフレネミー＆ノンデリ発言をかまし、酔うと極めて暴力的になるギャップが危険すぎます。',
+        matchReason: '馴れ合いよりも「誠実な仕事ぶり」や「ちょっと毒のある知的な会話」を好むあなたにベストマッチ！人付き合いに不器用なカサネの優しい本音を理解してあげられる、数少ない良き理解者になれます。',
+        hangout: 'カフェでハイレベルな作業＆毒舌トークを楽しんだあと、飲み会では「カサネにお酒を飲ませすぎない係」として大活躍します。',
+        meters: { commu: 42, work: 99, chaos: 86, kind: 78 },
+        pros: ['納期もクオリティも完璧にこなす圧倒的シゴデキ副会長', 'お金の管理が上手＆いざというとき頼れるリーダーシップ', '不器用で人付き合いに悩む、実は可愛いギャップ'],
+        cautions: ['酒癖が極めて危険なので酔わせたら即・厳戒態勢！', 'シラフでも無自覚ノンデリ＆フレネミー行動が出がち＆運動音痴'],
+        compat: {
+          sub: { code: 'WKH', label: '🌟 もう1人の好相性', reason: '会長のモモカとは、どんなノンデリ発言も笑い飛ばしてくれる最高の正副コンビ！' },
+          chaos: { code: 'WFS', label: '💥 一緒にいるとカオス', reason: '後回し癖のコウキと組むと、ノンデリ同士の応酬＆納期バトルが勃発します。' }
+        },
+        sprite: {
+          bg: '#ede9fe', hair: '#231f29', hairHi: '#4a4357', hairSh: '#121017',
+          eye: '#1e1b2e', skin: '#fce3d4', top: '#7f1d38', topAccent: '#18181b', pants: '#e7e5e4',
+          hairStyle: 'centerpart', expr: 'cool', acc: 'round_glasses', prop: 'book'
+        }
+      },
+      MFH: {
+        code: 'MFH', group: 'M',
+        name: 'オウタ', role: 'イベント係',
+        title: '怒らない器デカ・スパイラルパーマの聞き上手',
+        quote: '「あー、いいよいいよ俺も行くわ〜（超マイペース）…それ、ちょっと面白いな笑」',
+        vignetteNote: '水色×黄緑ジャージでまったりサッカー観戦しつつ、みんなの話を聞き中…',
+        gradient: 'linear-gradient(135deg, #0f766e 0%, #14b8a6 55%, #5eead4 100%)',
+        bio: '黒髪スパイラルパーマ＆口の右上のホクロ、水色×黄緑の幾何学ジャージがトレードマークのイベント係。何をされても基本怒らない圧倒的な器の大きさと超マイペースさで、Ladsの精神安定剤になっています。口下手だけど聞き上手、ツッコミとバランス役に徹しつつ、たまに刺すようなシュールな笑いで爆笑をかっさらう玄人タイプ。',
+        matchReason: '無理にテンションを合わせなくても居心地がいい関係を望むあなたに最高！オウタの「全部優しく受け止めてくれる安心感」と「実はフッ軽でノリに乗ってくれるフットワーク」に、気づけば一番頼りたくなります。',
+        hangout: 'インドアまったり飲み＋サッカー観戦でシュールなツッコミを聞きつつ、急に「今からカラオケ行く？」にも普通についてきてくれます。',
+        meters: { commu: 68, work: 72, chaos: 58, kind: 99 },
+        pros: ['何をされても怒らない、Lads随一の広すぎる器', '聞き上手なバランス役＆たまに刺さるシュールな笑い', 'お酒に強くてインドアなのに意外とフッ軽なノリの良さ'],
+        cautions: ['女の子はちょっと苦手で口下手なので、最初はこっちから話題を振ると◎', '色々なことにミーハー＆超マイペースなので急かし厳禁'],
+        compat: {
+          sub: { code: 'WFS', label: '🌟 もう1人の好相性', reason: 'イベント係の相棒コウキとは、暴走ボケ×器デカ受け止めの最強凸凹コンビ！' },
+          chaos: { code: 'WKH', label: '💥 一緒にいるとカオス', reason: '恋愛＆ギャルノリ全開のモモカにグイグイ来られると、ちょっとタジタジになりがち。' }
+        },
+        sprite: {
+          bg: '#ccfbf1', hair: '#221f2b', hairHi: '#4a455c', hairSh: '#110f17',
+          eye: '#1e293b', skin: '#f7d8c4', top: '#38bdf8', topAccent: '#a3e635', pants: '#1f2937',
+          hairStyle: 'curly', expr: 'calm_mole', acc: 'none', prop: 'soccer'
+        }
+      },
+      MFS: {
+        code: 'MFS', group: 'M',
+        name: 'アカネ', role: '保険担当',
+        title: '萌え袖の運動お化け・掴みどころゼロ天然ボケ',
+        quote: '「ん〜…？なにそれおもしろ〜い（ニコニコ）…あ、今の普通にダサいよ？（真顔）」',
+        vignetteNote: '萌え袖パーカーでニコニコしながら、意味不明発言で周囲を沸かせ中！',
+        gradient: 'linear-gradient(135deg, #c2410c 0%, #f97316 55%, #fb923c 100%)',
+        bio: 'シースルー前髪の黒髪に、グレーパーカー萌え袖×黒ジャージが定番の保険担当。サッカーとバスケで鍛えた圧倒的運動神経と意外な行動力を持ちながら、中身はサークルで一番ヘンテコで掴みどころがない不思議ちゃん！ゆっくりふわふわ喋って無意識ボケ＆意味不明発言で周りを沸かせる愛され天然ですが、仲良くなると急に毒舌が飛び出します。',
+        matchReason: '常識にとらわれない面白さや、ゆるい空気感の中の急な毒舌ツッコミが大好物なあなたにドンピシャ！アカネの予測不能な発言にツッコミを入れているだけで、何時間でも笑っていられます。',
+        hangout: 'ゆるふわ散歩のつもりが謎の行動力でスポッチャへ直行し、バスケで無双されたあと真顔で毒舌を吐かれて爆笑します。',
+        meters: { commu: 76, work: 60, chaos: 96, kind: 88 },
+        pros: ['いるだけで場が和む、ずっとニコニコ＆溶け込み上手な優しさ', '無意識ボケと意味不明発言で全員を笑わせる天性の愛され力', '萌え袖ゆるふわなのにサッカー＆バスケ無双の運動神経ギャップ'],
+        cautions: ['何を考えているか本気で読めない＆めっちゃおバカ発言が飛んでくる', '仲良くなった証拠として急に鋭い毒舌が刺さることがある'],
+        compat: {
+          sub: { code: 'WKS', label: '🌟 もう1人の好相性', reason: '運動神経抜群＆毒舌ボケツッコミのコウヤとは、波長が合いすぎる爆笑ペア！' },
+          chaos: { code: 'WFS', label: '💥 一緒にいるとカオス', reason: '独特の雰囲気を持つコウキと並ぶと、Lads史上もっとも予測不能な化学反応が発生。' }
+        },
+        sprite: {
+          bg: '#ffedd5', hair: '#2b2124', hairHi: '#524046', hairSh: '#171012',
+          eye: '#261b1e', skin: '#f9dac6', top: '#9ca3af', topAccent: '#e5e7eb', pants: '#1f2937',
+          hairStyle: 'seethrough', expr: 'fluffy_smile', acc: 'none', prop: 'basketball'
+        }
+      }
+    };
+
+    const MEMBER_ORDER = ['WKH', 'WKS', 'WFH', 'WFS', 'MKH', 'MKS', 'MFH', 'MFS'];
+
+    // =========================================================================
+    // 2. CUSTOM PIXEL ART ENGINE FOR ALL 8 LADS MEMBERS
+    // =========================================================================
+
+    function buildMemberGrid(code, frame = 0, includeBench = true) {
+      const m = MEMBERS[code];
+      const s = m.sprite;
+      const W = 32, H = 32;
+      const OUTLINE = '#1e2438';
+      const grid = Array.from({ length: H }, () => Array(W).fill(null));
+      const setPx = (x, y, c) => {
+        if (x >= 0 && x < W && y >= 0 && y < H) grid[y][x] = c;
+      };
+      const fillRect = (x, y, w, h, c) => {
+        for (let j = y; j < y + h; j++) {
+          for (let i = x; i < x + w; i++) setPx(i, j, c);
+        }
+      };
+
+      const bob = frame % 2 === 1 ? 1 : 0;
+
+      // Club bench / cushion
+      if (includeBench) {
+        const benchY = 23;
+        fillRect(6, benchY + 2, 2, 5, '#cbd5e1');
+        fillRect(24, benchY + 2, 2, 5, '#cbd5e1');
+        fillRect(4, benchY, 24, 3, '#64748b');
+        for (let x = 5; x < 27; x++) setPx(x, benchY, '#94a3b8');
+      }
+
+      const hy = 5 + bob;
+      const by = 17 + bob;
+
+      // --- Back Hair ---
+      if (s.hairStyle === 'long_gyaru' || s.hairStyle === 'long_seiso') {
+        fillRect(8, hy + 4, 16, 14, s.hairSh);
+        fillRect(9, hy + 3, 14, 12, s.hair);
+      } else if (s.hairStyle === 'seethrough') {
+        fillRect(8, hy + 4, 16, 11, s.hairSh);
+        fillRect(9, hy + 3, 14, 10, s.hair);
+      } else if (s.hairStyle === 'curly') {
+        fillRect(7, hy + 3, 18, 10, s.hair);
+        setPx(6, hy + 5, s.hair); setPx(25, hy + 5, s.hair);
+        setPx(6, hy + 8, s.hairSh); setPx(25, hy + 8, s.hairSh);
+        setPx(8, hy + 1, s.hair); setPx(23, hy + 1, s.hair);
+      } else if (s.hairStyle === 'mash') {
+        fillRect(8, hy + 3, 16, 9, s.hair);
+        fillRect(9, hy + 9, 14, 2, s.hairSh);
+      } else if (s.hairStyle === 'centerpart' || s.hairStyle === 'natural') {
+        fillRect(9, hy + 3, 14, 9, s.hair);
+        fillRect(9, hy + 9, 14, 2, s.hairSh);
+      } else if (s.hairStyle === 'buzz') {
+        fillRect(10, hy + 2, 12, 6, s.hair);
+      }
+
+      // --- Body & Outfit ---
+      // Pants & Shoes
+      fillRect(11, 23, 4, 4, s.pants);
+      fillRect(17, 23, 4, 4, s.pants);
+      fillRect(11, 27, 4, 2, '#f8fafc');
+      fillRect(17, 27, 4, 2, '#f8fafc');
+      fillRect(11, 29, 4, 1, OUTLINE);
+      fillRect(17, 29, 4, 1, OUTLINE);
+
+      // Torso
+      fillRect(10, by, 12, 6, s.top);
+
+      // Outfit-specific details!
+      if (code === 'WKS') {
+        // Kouya navy jersey with red & white horizontal stripes
+        fillRect(10, by + 3, 12, 1, '#dc2626');
+        fillRect(10, by + 4, 12, 1, '#ffffff');
+      } else if (code === 'MFH') {
+        // Ota light-blue jersey with yellow-green geometric pattern
+        setPx(12, by + 1, s.topAccent); setPx(13, by + 2, s.topAccent);
+        setPx(16, by + 1, s.topAccent); setPx(17, by + 2, s.topAccent);
+        setPx(19, by + 3, s.topAccent); setPx(14, by + 4, s.topAccent);
+      } else if (code === 'MKS') {
+        // Kasane wine-red collared oversized shirt
+        fillRect(13, by, 6, 2, s.topAccent);
+        fillRect(8, by + 1, 3, 5, s.top); // baggy sleeves!
+        fillRect(21, by + 1, 3, 5, s.top);
+      } else if (code === 'MKH') {
+        // Nanami white fluffy sweater with cute black ribbons
+        setPx(15, by + 2, s.topAccent); setPx(16, by + 2, s.topAccent);
+        setPx(15, by + 4, s.topAccent); setPx(16, by + 4, s.topAccent);
+      } else if (code === 'WKH') {
+        // Momoka black zip-up track jacket with white zipper & stripes
+        fillRect(15, by, 2, 6, '#52525b');
+        fillRect(10, by + 1, 1, 5, '#ffffff');
+        fillRect(21, by + 1, 1, 5, '#ffffff');
+      } else if (code === 'WFH') {
+        // Kouwa dark blue denim jacket lapels
+        fillRect(14, by, 4, 6, '#172554');
+        setPx(13, by + 2, '#93c5fd'); setPx(18, by + 2, '#93c5fd');
+      }
+
+      // Arms (Akane has extra-long moe-sode sleeves!)
+      if (code === 'MFS') {
+        fillRect(8, by + 1, 2, 6, s.top);
+        fillRect(22, by + 1, 2, 6, s.top);
+      } else if (code !== 'MKS') {
+        fillRect(9, by + 1, 2, 4, s.top);
+        fillRect(21, by + 1, 2, 4, s.top);
+        setPx(10, by + 4, s.skin);
+        setPx(22, by + 4, s.skin);
+      }
+
+      // --- Head ---
+      fillRect(10, hy + 4, 12, 8, s.skin);
+      fillRect(11, hy + 11, 10, 2, s.skin);
+      setPx(11, hy + 10, '#ffa3b8');
+      setPx(20, hy + 10, '#ffa3b8');
+
+      // --- Eyes & Expressions ---
+      const blink = frame === 3;
+      if (blink) {
+        fillRect(12, hy + 9, 2, 1, OUTLINE);
+        fillRect(18, hy + 9, 2, 1, OUTLINE);
+      } else if (s.expr === 'narrow_smile') {
+        // Kouwa narrow smiling eyes
+        fillRect(12, hy + 8, 2, 1, OUTLINE);
+        fillRect(18, hy + 8, 2, 1, OUTLINE);
+        setPx(12, hy + 9, s.eye); setPx(19, hy + 9, s.eye);
+      } else if (s.expr === 'dimple_smile' || s.expr === 'happy') {
+        // Bright smiling eyes
+        setPx(12, hy + 7, OUTLINE); setPx(12, hy + 8, s.eye); setPx(12, hy + 9, s.eye);
+        setPx(13, hy + 7, '#ffffff'); setPx(13, hy + 8, OUTLINE); setPx(13, hy + 9, s.eye);
+        setPx(18, hy + 7, OUTLINE); setPx(18, hy + 8, s.eye); setPx(18, hy + 9, s.eye);
+        setPx(19, hy + 7, '#ffffff'); setPx(19, hy + 8, OUTLINE); setPx(19, hy + 9, s.eye);
+      } else {
+        setPx(12, hy + 7, OUTLINE); setPx(12, hy + 8, s.eye); setPx(12, hy + 9, s.eye);
+        setPx(13, hy + 7, '#ffffff'); setPx(13, hy + 8, OUTLINE); setPx(13, hy + 9, s.eye);
+        setPx(18, hy + 7, OUTLINE); setPx(18, hy + 8, s.eye); setPx(18, hy + 9, s.eye);
+        setPx(19, hy + 7, '#ffffff'); setPx(19, hy + 8, OUTLINE); setPx(19, hy + 9, s.eye);
+      }
+
+      // Mouth & special face details
+      if (s.expr === 'smirk') {
+        setPx(15, hy + 11, '#b85c75'); setPx(16, hy + 11, '#b85c75'); setPx(17, hy + 10, '#b85c75');
+      } else if (s.expr === 'dimple_smile') {
+        fillRect(14, hy + 11, 4, 1, '#e11d48');
+        setPx(13, hy + 11, '#f472b6'); setPx(18, hy + 11, '#f472b6'); // dimples!
+      } else if (s.expr === 'calm_mole') {
+        setPx(15, hy + 11, '#9c5a6c'); setPx(16, hy + 11, '#9c5a6c');
+        setPx(18, hy + 10, '#2c1e4a'); // Ota's mole upper-right of mouth!
+      } else if (s.expr === 'cool') {
+        setPx(15, hy + 11, '#8c5a6c'); setPx(16, hy + 11, '#8c5a6c');
+      } else {
+        setPx(15, hy + 11, '#d95b7a'); setPx(16, hy + 11, '#d95b7a');
+      }
+
+      // --- Front Hair & Bangs ---
+      if (s.hairStyle === 'buzz') {
+        fillRect(10, hy + 2, 12, 3, s.hair);
+        fillRect(12, hy + 2, 4, 1, s.hairHi);
+      } else if (s.hairStyle === 'centerpart') {
+        fillRect(10, hy, 12, 5, s.hair);
+        fillRect(9, hy + 2, 14, 3, s.hair);
+        setPx(15, hy + 4, s.skin); setPx(16, hy + 4, s.skin); // center part!
+        fillRect(10, hy + 5, 3, 2, s.hair);
+        fillRect(19, hy + 5, 3, 2, s.hair);
+        fillRect(11, hy + 1, 3, 1, s.hairHi); fillRect(18, hy + 1, 3, 1, s.hairHi);
+      } else if (s.hairStyle === 'mash') {
+        fillRect(9, hy, 14, 6, s.hair);
+        fillRect(11, hy + 1, 4, 1, s.hairHi); fillRect(17, hy + 2, 3, 1, s.hairHi);
+        fillRect(10, hy + 6, 12, 1, s.hair);
+        setPx(13, hy + 6, s.skin); setPx(18, hy + 6, s.skin);
+      } else if (s.hairStyle === 'seethrough') {
+        fillRect(10, hy, 12, 5, s.hair);
+        fillRect(9, hy + 2, 14, 3, s.hair);
+        fillRect(12, hy + 1, 3, 1, s.hairHi);
+        setPx(11, hy + 5, s.hair); setPx(14, hy + 5, s.hair);
+        setPx(17, hy + 5, s.hair); setPx(20, hy + 5, s.hair);
+        setPx(14, hy + 6, s.hair); setPx(17, hy + 6, s.hair);
+      } else if (s.hairStyle === 'curly') {
+        fillRect(9, hy, 14, 6, s.hair);
+        setPx(10, hy - 1, s.hair); setPx(14, hy - 1, s.hair); setPx(19, hy - 1, s.hair);
+        fillRect(11, hy + 1, 2, 1, s.hairHi); fillRect(17, hy + 1, 2, 1, s.hairHi);
+        setPx(10, hy + 6, s.hair); setPx(13, hy + 6, s.hair); setPx(16, hy + 6, s.hair); setPx(20, hy + 6, s.hair);
+      } else {
+        fillRect(10, hy, 12, 5, s.hair);
+        fillRect(9, hy + 2, 14, 4, s.hair);
+        fillRect(12, hy + 1, 3, 1, s.hairHi); fillRect(17, hy + 2, 3, 1, s.hairHi);
+        setPx(10, hy + 6, s.hair); setPx(11, hy + 6, s.hair);
+        setPx(15, hy + 6, s.hair); setPx(20, hy + 6, s.hair); setPx(21, hy + 6, s.hair);
+      }
+
+      // --- Accessories ---
+      if (s.acc === 'round_glasses') {
+        fillRect(11, hy + 7, 4, 1, '#18181b'); fillRect(17, hy + 7, 4, 1, '#18181b');
+        fillRect(11, hy + 10, 4, 1, '#18181b'); fillRect(17, hy + 10, 4, 1, '#18181b');
+        setPx(11, hy + 8, '#18181b'); setPx(14, hy + 8, '#18181b');
+        setPx(17, hy + 8, '#18181b'); setPx(20, hy + 8, '#18181b');
+        setPx(15, hy + 8, '#18181b'); setPx(16, hy + 8, '#18181b');
+      } else if (s.acc === 'pink_clip') {
+        fillRect(19, hy + 3, 3, 2, '#f472b6');
+        setPx(20, hy + 3, '#ffffff');
+      }
+
+      // --- Signature Props ---
+      const px = 7, py = by + 1;
+      if (s.prop === 'phone') {
+        fillRect(px, py - 1, 3, 5, '#1e293b');
+        fillRect(px + 1, py, 1, 3, '#38bdf8');
+      } else if (s.prop === 'baseball') {
+        fillRect(px, py, 3, 3, '#ffffff');
+        setPx(px, py + 1, '#ef4444'); setPx(px + 2, py + 1, '#ef4444');
+      } else if (s.prop === 'soccer') {
+        fillRect(px, py, 3, 3, '#ffffff');
+        setPx(px + 1, py + 1, '#18181b'); setPx(px, py, '#18181b');
+      } else if (s.prop === 'basketball') {
+        fillRect(px, py, 3, 3, '#f97316');
+        setPx(px + 1, py, '#7c2d12'); setPx(px + 1, py + 1, '#7c2d12'); setPx(px + 1, py + 2, '#7c2d12');
+      } else if (s.prop === 'book') {
+        fillRect(px, py - 1, 3, 4, '#2563eb');
+        fillRect(px + 1, py, 1, 2, '#ffffff');
+      } else if (s.prop === 'pudding') {
+        // Giant bucket pudding from Kouya's photo!
+        fillRect(px, py - 1, 4, 1, '#78350f');
+        fillRect(px, py, 4, 3, '#facc15');
+        setPx(px + 1, py + 1, '#dc2626');
+      } else if (s.prop === 'drink') {
+        fillRect(px, py - 1, 3, 4, '#facc15');
+        fillRect(px, py - 1, 3, 1, '#ffffff');
+      } else if (s.prop === 'penlight') {
+        fillRect(px + 1, py - 3, 1, 4, '#f472b6');
+        fillRect(px + 1, py + 1, 1, 2, '#e2e8f0');
+      }
+
+      // 1px Dark Outline Pass
+      const outlined = Array.from({ length: H }, (_, y) => [...grid[y]]);
+      const dirs = [[-1, 0], [1, 0], [0, -1], [0, 1]];
+      for (let y = 0; y < H; y++) {
+        for (let x = 0; x < W; x++) {
+          if (grid[y][x] === null) {
+            for (const [dx, dy] of dirs) {
+              const nx = x + dx, ny = y + dy;
+              if (nx >= 0 && nx < W && ny >= 0 && ny < H && grid[ny][nx] !== null) {
+                outlined[y][x] = OUTLINE;
+                break;
+              }
+            }
+          }
+        }
+      }
+      return outlined;
+    }
+
+    function blitGrid(ctx, grid, offsetX, offsetY, scale, flipX = false) {
+      const H = grid.length;
+      const W = grid[0].length;
+      for (let y = 0; y < H; y++) {
+        for (let x = 0; x < W; x++) {
+          const c = grid[y][x];
+          if (c) {
+            const dx = flipX ? (W - 1 - x) : x;
+            ctx.fillStyle = c;
+            ctx.fillRect((offsetX + dx) * scale, (offsetY + y) * scale, scale, scale);
+          }
+        }
+      }
+    }
+
+    function drawPixelStar(ctx, ox, oy, scale, color) {
+      const pts = [[2,0],[2,1],[0,2],[1,2],[2,2],[3,2],[4,2],[2,3],[2,4]];
+      ctx.fillStyle = color;
+      for (const [x, y] of pts) ctx.fillRect((ox + x) * scale, (oy + y) * scale, scale, scale);
+    }
+
+    function drawMemberSprite(canvas, code, frame = 0) {
+      const m = MEMBERS[code];
+      if (!m || !canvas) return;
+      const ctx = canvas.getContext('2d');
+      const scale = Math.floor(canvas.width / 32) || 4;
+      ctx.imageSmoothingEnabled = false;
+
+      ctx.fillStyle = m.sprite.bg;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      ctx.fillStyle = 'rgba(255,255,255,0.72)';
+      const spY = frame % 2 === 1 ? 0 : 1;
+      const d = (x, y) => ctx.fillRect(x * scale, y * scale, scale, scale);
+      d(4, 5 + spY); d(3, 6 + spY); d(5, 6 + spY); d(4, 7 + spY);
+      d(27, 4 - spY); d(26, 5 - spY); d(28, 5 - spY);
+
+      blitGrid(ctx, buildMemberGrid(code, frame, true), 0, 0, scale, false);
+    }
+
+    // Vignette #1: Lads Japanese Tatami Camp Room (和室合宿ルーム！)
+    function drawVignetteScene1(canvas, code, tick = 0) {
+      if (!MEMBERS[code] || !canvas) return;
+      const ctx = canvas.getContext('2d');
+      const scale = 4; // 80 x 32
+      ctx.imageSmoothingEnabled = false;
+
+      // Fusuma sliding doors (cream + dark wood frames like the camp photos!)
+      ctx.fillStyle = '#f5eedc';
+      ctx.fillRect(0, 0, 80 * scale, 23 * scale);
+      ctx.fillStyle = '#5c4033';
+      ctx.fillRect(0, 22 * scale, 80 * scale, 1 * scale);
+      ctx.fillRect(20 * scale, 0, 2 * scale, 23 * scale);
+      ctx.fillRect(58 * scale, 0, 2 * scale, 23 * scale);
+      // Fusuma handles
+      ctx.fillStyle = '#3e2723';
+      ctx.fillRect(17 * scale, 13 * scale, 2 * scale, 3 * scale);
+      ctx.fillRect(61 * scale, 13 * scale, 2 * scale, 3 * scale);
+
+      // Tatami floor
+      ctx.fillStyle = '#c5d19b';
+      ctx.fillRect(0, 23 * scale, 80 * scale, 9 * scale);
+      ctx.fillStyle = '#556b2f';
+      ctx.fillRect(0, 23 * scale, 80 * scale, 1 * scale);
+      ctx.fillRect(40 * scale, 23 * scale, 1 * scale, 9 * scale);
+
+      // Little camp snacks/drinks on floor
+      ctx.fillStyle = '#f97316';
+      ctx.fillRect(10 * scale, 24 * scale, 4 * scale, 5 * scale);
+      ctx.fillStyle = '#fef08a';
+      ctx.fillRect(11 * scale, 25 * scale, 2 * scale, 2 * scale);
+      ctx.fillStyle = '#38bdf8';
+      ctx.fillRect(66 * scale, 24 * scale, 3 * scale, 5 * scale);
+
+      // Character centered
+      const f = tick % 6 === 5 ? 3 : (tick % 2);
+      blitGrid(ctx, buildMemberGrid(code, f, true), 24, 0, scale, false);
+
+      // Floating pixel star
+      drawPixelStar(ctx, 54, 7 - (tick % 3), scale, '#f59e0b');
+    }
+
+    // Vignette #2: Soccer Pitch Duo Scene with Goal Net & Bouncing Pixel Ball!
+    function drawVignetteScene2(canvas, code, buddyCode, tick = 0) {
+      if (!MEMBERS[code] || !MEMBERS[buddyCode] || !canvas) return;
+      const ctx = canvas.getContext('2d');
+      const scale = 4; // 80 x 30
+      ctx.imageSmoothingEnabled = false;
+
+      // Sky & clouds
+      ctx.fillStyle = '#bae6fd';
+      ctx.fillRect(0, 0, 80 * scale, 15 * scale);
+      ctx.fillStyle = '#ffffff';
+      ctx.fillRect(10 * scale, 3 * scale, 8 * scale, 2 * scale);
+      ctx.fillRect(58 * scale, 4 * scale, 10 * scale, 2 * scale);
+
+      // Cute Pixel Soccer Goal in background center
+      ctx.fillStyle = '#e2e8f0';
+      ctx.fillRect(28 * scale, 6 * scale, 24 * scale, 10 * scale);
+      ctx.fillStyle = '#94a3b8';
+      for (let gx = 30; gx < 52; gx += 3) ctx.fillRect(gx * scale, 7 * scale, 1 * scale, 9 * scale);
+      for (let gy = 8; gy < 16; gy += 3) ctx.fillRect(29 * scale, gy * scale, 22 * scale, 1 * scale);
+      ctx.fillStyle = '#ffffff';
+      ctx.fillRect(27 * scale, 5 * scale, 26 * scale, 2 * scale);
+      ctx.fillRect(27 * scale, 5 * scale, 2 * scale, 12 * scale);
+      ctx.fillRect(51 * scale, 5 * scale, 2 * scale, 12 * scale);
+
+      // Striped green soccer turf
+      for (let x = 0; x < 80; x += 8) {
+        ctx.fillStyle = (x / 8) % 2 === 0 ? '#22c55e' : '#16a34a';
+        ctx.fillRect(x * scale, 15 * scale, 8 * scale, 15 * scale);
+      }
+      // White pitch chalk line
+      ctx.fillStyle = 'rgba(255,255,255,0.75)';
+      ctx.fillRect(0, 21 * scale, 80 * scale, 1 * scale);
+
+      // Two buddies on the pitch
+      const f1 = tick % 6 === 4 ? 3 : (tick % 2);
+      const f2 = tick % 6 === 2 ? 3 : ((tick + 1) % 2);
+      blitGrid(ctx, buildMemberGrid(code, f1, true), 5, -1, scale, false);
+      blitGrid(ctx, buildMemberGrid(buddyCode, f2, true), 43, -1, scale, true);
+
+      // Bouncing pixel soccer ball in the middle!
+      const bounce = tick % 2 === 0 ? 0 : -3;
+      const bx = 37, by = 18 + bounce;
+      ctx.fillStyle = 'rgba(22,41,33,0.28)';
+      ctx.fillRect(37 * scale, 24 * scale, 5 * scale, 1 * scale);
+      ctx.fillStyle = '#162921';
+      ctx.fillRect((bx - 1) * scale, by * scale, 7 * scale, 5 * scale);
+      ctx.fillRect(bx * scale, (by - 1) * scale, 5 * scale, 7 * scale);
+      ctx.fillStyle = '#ffffff';
+      ctx.fillRect(bx * scale, by * scale, 5 * scale, 5 * scale);
+      ctx.fillStyle = '#162921';
+      ctx.fillRect((bx + 2) * scale, (by + 2) * scale, 1 * scale, 1 * scale);
+      ctx.fillRect(bx * scale, by * scale, 1 * scale, 1 * scale);
+      ctx.fillRect((bx + 4) * scale, (by + 4) * scale, 1 * scale, 1 * scale);
+    }
+
+    // =========================================================================
+    // 3. STATE & SCORING
+    // =========================================================================
+
+    const PAGE_SIZE = 5;
+    const TOTAL_PAGES = Math.ceil(QUESTIONS.length / PAGE_SIZE);
+
+    const state = {
+      view: 'home',
+      page: 0,
+      answers: {},
+      myResult: null,
+      viewingCode: null,
+      dexFilter: 'ALL',
+      animTick: 0
+    };
+
+    function loadSavedResult() {
+      try {
+        const raw = localStorage.getItem('lads8_saved_result');
+        if (raw) {
+          const parsed = JSON.parse(raw);
+          if (parsed && parsed.code && MEMBERS[parsed.code]) state.myResult = parsed;
+        }
+      } catch (e) {}
+    }
+
+    function saveResultToStorage(res) {
+      try {
+        localStorage.setItem('lads8_saved_result', JSON.stringify(res));
+      } catch (e) {}
+    }
+
+    function calculateResult() {
+      const totals = { WM: 0, KF: 0, HS: 0 };
+      const counts = { WM: 0, KF: 0, HS: 0 };
+      const lateBias = { WM: 0, KF: 0, HS: 0 };
+
+      for (const q of QUESTIONS) {
+        const val = state.answers[q.id] ?? 0;
+        const c = val * q.dir;
+        totals[q.axis] += c;
+        counts[q.axis] += 1;
+        if (q.stage === 3) lateBias[q.axis] += c * 0.01;
+      }
+
+      const pcts = {};
+      const letters = {};
+      const pairs = { WM: ['W', 'M'], KF: ['K', 'F'], HS: ['H', 'S'] };
+
+      for (const axis of ['WM', 'KF', 'HS']) {
+        const max = counts[axis] * 3;
+        let p = Math.round(((totals[axis] + max) / (2 * max)) * 100);
+        if (p === 50) p = (totals[axis] + lateBias[axis]) >= 0 ? 51 : 49;
+        p = Math.max(2, Math.min(98, p));
+        pcts[axis] = p;
+        letters[axis] = p >= 50 ? pairs[axis][0] : pairs[axis][1];
+      }
+
+      return { code: letters.WM + letters.KF + letters.HS, pcts };
+    }
+
+    function getDefaultPcts(code) {
+      return {
+        WM: code[0] === 'W' ? 76 : 24,
+        KF: code[1] === 'K' ? 75 : 25,
+        HS: code[2] === 'H' ? 74 : 26
+      };
+    }
+
+    // =========================================================================
+    // 4. UI RENDERING
+    // =========================================================================
+
+    let toastTimer = null;
+    function showToast(msg) {
+      const el = document.getElementById('toast');
+      el.textContent = msg;
+      el.classList.remove('hidden', 'toast-enter');
+      void el.offsetWidth;
+      el.classList.add('toast-enter');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => el.classList.add('hidden'), 2600);
+    }
+
+    function setView(viewName) {
+      state.view = viewName;
+      document.getElementById('viewHome').classList.toggle('hidden', viewName !== 'home');
+      document.getElementById('viewQuiz').classList.toggle('hidden', viewName !== 'quiz');
+      document.getElementById('viewResult').classList.toggle('hidden', viewName !== 'result');
+      document.getElementById('viewDex').classList.toggle('hidden', viewName !== 'dex');
+
+      const navQuiz = document.getElementById('navQuizBtn');
+      const navDex = document.getElementById('navDexBtn');
+      navQuiz.className = viewName === 'quiz'
+        ? 'px-3.5 sm:px-4 py-1.5 rounded-full border-2 border-[#1e2438] text-xs sm:text-sm font-bold text-white bg-blue-600 shadow-[2px_2px_0_#1e2438] transition'
+        : 'px-3.5 sm:px-4 py-1.5 rounded-full border-2 border-[#1e2438] text-xs sm:text-sm font-bold text-blue-700 bg-blue-50 hover:bg-blue-100 transition';
+      navDex.className = viewName === 'dex'
+        ? 'px-3.5 sm:px-4 py-1.5 rounded-full border-2 border-[#1e2438] text-xs sm:text-sm font-bold text-white bg-[#1e2438] shadow-[2px_2px_0_#facc15] transition'
+        : 'px-3.5 sm:px-4 py-1.5 rounded-full border-2 border-[#1e2438] text-xs sm:text-sm font-bold text-[#1e2438] bg-white hover:bg-amber-50 transition';
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function renderHomeSavedBanner() {
+      const banner = document.getElementById('savedResultBanner');
+      if (state.myResult && MEMBERS[state.myResult.code]) {
+        const m = MEMBERS[state.myResult.code];
+        banner.classList.remove('hidden');
+        document.getElementById('savedResultTitle').textContent = `${m.code}｜${m.name}（${m.role}）`;
+        drawMemberSprite(document.getElementById('savedResultCanvas'), m.code, 0);
+      } else {
+        banner.classList.add('hidden');
+      }
+    }
+
+    function renderQuizPage() {
+      const start = state.page * PAGE_SIZE;
+      const pageQs = QUESTIONS.slice(start, start + PAGE_SIZE);
+      const answeredCount = Object.keys(state.answers).length;
+
+      const stageNum = pageQs[0].stage;
+      const stageBadge = document.getElementById('stageBadge');
+      if (stageNum === 1) {
+        stageBadge.textContent = '前半戦: 普段のノリ ⚽';
+        stageBadge.className = 'font-pixel px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-300';
+      } else if (stageNum === 2) {
+        stageBadge.textContent = '後半戦: 合宿・飲み会ノリ 🍻';
+        stageBadge.className = 'font-pixel px-2.5 py-1 rounded-full bg-amber-100 text-amber-800 border border-amber-300';
+      } else {
+        stageBadge.textContent = 'アディショナルタイム: 本音 🔥';
+        stageBadge.className = 'font-pixel px-2.5 py-1 rounded-full bg-[#162921] text-yellow-300 border border-[#162921]';
+      }
+
+      document.getElementById('pageIndicator').textContent = `PAGE ${state.page + 1} / ${TOTAL_PAGES}`;
+      document.getElementById('progressCount').textContent = `${answeredCount} / ${QUESTIONS.length} 回答済み`;
+      document.getElementById('progressBar').style.width = `${Math.round((answeredCount / QUESTIONS.length) * 100)}%`;
+
+      const sizes = [
+        { val: 3, cls: 'agree', sz: 'w-11 h-11 sm:w-12 sm:h-12', label: '強くそう思う' },
+        { val: 2, cls: 'agree', sz: 'w-9 h-9 sm:w-10 sm:h-10', label: 'そう思う' },
+        { val: 1, cls: 'agree', sz: 'w-7 h-7 sm:w-8 sm:h-8', label: 'ややそう思う' },
+        { val: 0, cls: 'neutral', sz: 'w-6 h-6 sm:w-7 sm:h-7', label: 'どちらとも言えない' },
+        { val: -1, cls: 'disagree', sz: 'w-7 h-7 sm:w-8 sm:h-8', label: 'あまりそう思わない' },
+        { val: -2, cls: 'disagree', sz: 'w-9 h-9 sm:w-10 sm:h-10', label: 'そう思わない' },
+        { val: -3, cls: 'disagree', sz: 'w-11 h-11 sm:w-12 sm:h-12', label: '全くそう思わない' }
+      ];
+
+      document.getElementById('questionsContainer').innerHTML = pageQs.map((q) => {
+        const cur = state.answers[q.id];
+        const btns = sizes.map((opt) => `<button type="button" class="likert-btn ${opt.cls} ${opt.sz} ${cur === opt.val ? 'selected' : ''}" data-qid="${q.id}" data-val="${opt.val}" aria-label="${opt.label}" title="${opt.label}"></button>`).join('');
+        return `
+          <div id="qcard-${q.id}" class="question-card retro-card-soft p-5 sm:p-6 ${cur !== undefined ? 'answered' : ''}">
+            <div class="text-center space-y-2 mb-5">
+              <span class="inline-block font-pixel text-xs px-2.5 py-0.5 rounded-full bg-blue-100 text-blue-700 border border-blue-200">Q${String(q.id).padStart(2, '0')}</span>
+              <p class="text-sm sm:text-base font-bold text-[#1e2438] leading-relaxed">${q.text}</p>
+            </div>
+            <div class="flex items-center justify-between gap-1.5 sm:gap-3 max-w-md mx-auto">
+              <span class="hidden sm:inline font-pixel text-xs text-blue-600 w-16 text-right shrink-0">そう思う</span>
+              <div class="flex items-center justify-between flex-1 gap-1.5 sm:gap-2">${btns}</div>
+              <span class="hidden sm:inline font-pixel text-xs text-orange-600 w-20 text-left shrink-0">そう思わない</span>
+            </div>
+            <div class="flex sm:hidden items-center justify-between text-[11px] font-pixel mt-2.5 px-1">
+              <span class="text-blue-600">そう思う</span>
+              <span class="text-[#7b869e]">どちらとも</span>
+              <span class="text-orange-600">そう思わない</span>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      document.getElementById('prevPageBtn').disabled = state.page === 0;
+      document.getElementById('nextPageBtn').textContent = state.page === TOTAL_PAGES - 1 ? '相性結果を見る ✨' : '次の5問へ ▶';
+    }
+
+    function renderResultPage(code, isOwn = false) {
+      const m = MEMBERS[code];
+      if (!m) return;
+      state.viewingCode = code;
+
+      document.getElementById('resultBanner').style.background = m.gradient;
+      document.getElementById('resultContextLabel').textContent = isOwn ? '★ あなたと一番相性がいいLadsメンバー ★' : '★ LADS MEMBER PROFILE ★';
+      document.getElementById('resultRoleBadge').textContent = `役職：${m.role}｜${GROUPS[m.group].name}`;
+      document.getElementById('resultCode').textContent = m.code;
+      document.getElementById('resultName').textContent = m.name;
+      document.getElementById('resultTitle').textContent = m.title;
+      document.getElementById('resultQuote').textContent = m.quote;
+
+      const backMineBtn = document.getElementById('backToMyResultBtn');
+      backMineBtn.classList.toggle('hidden', isOwn || !state.myResult || state.myResult.code === code);
+
+      drawMemberSprite(document.getElementById('resultSpriteCanvas'), m.code, 0);
+      drawVignetteScene1(document.getElementById('vignetteScene1'), m.code, 0);
+      document.getElementById('vignetteCaption1').textContent = `★ ${m.vignetteNote}`;
+
+      const subBuddy = MEMBERS[m.compat.sub.code];
+      drawVignetteScene2(document.getElementById('vignetteScene2'), m.code, subBuddy.code, 0);
+      document.getElementById('vignetteCaption2').textContent = `★ Lads名コンビ：${m.name} × ${subBuddy.name}`;
+
+      const pcts = isOwn && state.myResult ? state.myResult.pcts : getDefaultPcts(m.code);
+      document.getElementById('axisModeNote').textContent = isOwn ? 'あなたの回答から算出したバランス' : `${m.name}タイプの標準バランス`;
+
+      const axisDefs = [
+        { key: 'WM', title: 'ノリ・社交性', left: 'ワイワイ (W)', right: 'マイペース (M)', colorL: '#2563eb', colorR: '#ea580c' },
+        { key: 'KF', title: '行動スタンス', left: 'きっちり (K)', right: '自由人 (F)', colorL: '#1d4ed8', colorR: '#d97706' },
+        { key: 'HS', title: 'トークのスパイス', left: 'ほっこり (H)', right: 'スパイシー (S)', colorL: '#0284c7', colorR: '#dc2626' }
+      ];
+
+      document.getElementById('axisBarsContainer').innerHTML = axisDefs.map((ax) => {
+        const pL = pcts[ax.key];
+        const pR = 100 - pL;
+        const leftWins = pL >= 50;
+        const winCol = leftWins ? ax.colorL : ax.colorR;
+        return `
+          <div class="space-y-1.5">
+            <div class="flex items-center justify-between text-xs font-bold">
+              <span class="${leftWins ? 'text-blue-700' : 'text-[#7b869e]'}">${ax.left} ${pL}%</span>
+              <span class="font-pixel text-[11px] text-[#6b7794]">${ax.title}</span>
+              <span class="${!leftWins ? 'text-orange-700' : 'text-[#7b869e]'}">${pR}% ${ax.right}</span>
+            </div>
+            <div class="h-3.5 w-full rounded-full bg-blue-50 overflow-hidden flex border border-[#1e2438]/25">
+              <div class="h-full transition-all duration-500" style="width:${pL}%; background:${leftWins ? winCol : '#dde6f7'}"></div>
+              <div class="h-full transition-all duration-500" style="width:${pR}%; background:${!leftWins ? winCol : '#dde6f7'}"></div>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      document.getElementById('resultBio').textContent = m.bio;
+      document.getElementById('resultMatchReason').textContent = m.matchReason;
+      document.getElementById('resultHangout').textContent = m.hangout;
+
+      const meterDefs = [
+        { label: 'コミュ力・ノリ度', val: m.meters.commu, color: 'from-blue-500 to-cyan-400' },
+        { label: 'シゴデキ・頼りがい度', val: m.meters.work, color: 'from-indigo-500 to-blue-500' },
+        { label: 'クセ強・カオス度', val: m.meters.chaos, color: 'from-orange-500 to-amber-400' },
+        { label: '優しさ・包容力', val: m.meters.kind, color: 'from-emerald-500 to-teal-400' }
+      ];
+      document.getElementById('metersContainer').innerHTML = meterDefs.map((mt) => `
+        <div class="space-y-1">
+          <div class="flex justify-between text-xs font-bold">
+            <span class="text-[#35405c]">${mt.label}</span>
+            <span class="font-pixel text-blue-600">${mt.val}%</span>
+          </div>
+          <div class="h-3 rounded-full bg-blue-50 overflow-hidden border border-[#1e2438]/20">
+            <div class="h-full rounded-full bg-gradient-to-r ${mt.color}" style="width:${mt.val}%"></div>
+          </div>
+        </div>
+      `).join('');
+
+      document.getElementById('resultPros').innerHTML = m.pros.map((x) => `<li class="flex items-start gap-2"><span class="text-blue-600 font-bold">★</span><span>${x}</span></li>`).join('');
+      document.getElementById('resultCautions').innerHTML = m.cautions.map((x) => `<li class="flex items-start gap-2"><span class="text-orange-500 font-bold">!</span><span>${x}</span></li>`).join('');
+
+      const cCards = [
+        { item: m.compat.sub, border: 'border-blue-300 hover:border-blue-500', bg: 'bg-blue-50/75', badgeCls: 'bg-blue-600 text-white' },
+        { item: m.compat.chaos, border: 'border-orange-300 hover:border-orange-500', bg: 'bg-orange-50/75', badgeCls: 'bg-orange-600 text-white' }
+      ];
+      document.getElementById('compatibilityGrid').innerHTML = cCards.map((c) => {
+        const target = MEMBERS[c.item.code];
+        return `
+          <button type="button" data-open-member="${target.code}" class="text-center rounded-2xl p-4 border-2 ${c.border} ${c.bg} transition transform hover:-translate-y-0.5 flex flex-col items-center gap-2.5">
+            <span class="font-pixel px-2.5 py-0.5 rounded-full text-[11px] ${c.badgeCls}">${c.item.label}</span>
+            <canvas class="pixel-canvas w-20 h-20 rounded-2xl border-2 border-[#1e2438] shadow-sm" data-sprite="${target.code}" width="96" height="96"></canvas>
+            <div>
+              <div class="font-pixel text-xs text-blue-700">${target.code}｜${target.role}</div>
+              <div class="font-black text-base text-[#1e2438]">${target.name}</div>
+            </div>
+            <p class="text-xs text-[#35405c] leading-relaxed">${c.item.reason}</p>
+            <span class="font-pixel text-[11px] text-blue-600 mt-auto">詳しく見る ▶</span>
+          </button>
+        `;
+      }).join('');
+
+      document.querySelectorAll('#compatibilityGrid canvas[data-sprite]').forEach((cv) => {
+        drawMemberSprite(cv, cv.dataset.sprite, 0);
+      });
+
+      setView('result');
+    }
+
+    function renderDex() {
+      const container = document.getElementById('dexGrid');
+      const visibleGroups = state.dexFilter === 'ALL' ? GROUP_ORDER : [state.dexFilter];
+
+      container.innerHTML = visibleGroups.map((gid) => {
+        const g = GROUPS[gid];
+        const list = MEMBER_ORDER.filter((c) => MEMBERS[c].group === gid);
+        const cards = list.map((code) => {
+          const m = MEMBERS[code];
+          return `
+            <button type="button" data-open-member="${m.code}" class="bg-white rounded-2xl p-4 border-2 border-[#1e2438] shadow-[3px_3px_0_#c9d8f5] hover:-translate-y-1 transition flex flex-col items-center text-center gap-2">
+              <canvas class="pixel-canvas w-24 h-24 rounded-xl border-2 border-[#1e2438]/15" data-sprite="${m.code}" width="128" height="128"></canvas>
+              <div>
+                <div class="font-pixel text-xs text-blue-700">${m.code}｜${m.role}</div>
+                <div class="font-black text-base text-[#1e2438]">${m.name}</div>
+                <div class="text-[11px] text-[#576382] mt-0.5 line-clamp-2">${m.title}</div>
+              </div>
+            </button>
+          `;
+        }).join('');
+
+        return `
+          <div class="retro-card p-5 sm:p-6 space-y-5" style="background:${g.sectionBg}">
+            <div class="text-center space-y-1.5 pb-4 border-b-2 border-dashed" style="border-color:${g.borderCol}66">
+              <span class="inline-block font-pixel text-xs px-3 py-1 rounded-full border border-[#1e2438]" style="background:${g.chipBg}; color:${g.chipText}">
+                ${g.icon} ${g.tagline}
+              </span>
+              <h3 class="font-pixel text-xl sm:text-2xl text-[#1e2438]">${g.name}</h3>
+              <p class="text-xs sm:text-sm text-[#495570] max-w-xl mx-auto">${g.desc}</p>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-3.5">${cards}</div>
+          </div>
+        `;
+      }).join('');
+
+      container.querySelectorAll('canvas[data-sprite]').forEach((cv) => {
+        drawMemberSprite(cv, cv.dataset.sprite, 0);
+      });
+
+      document.querySelectorAll('.dex-filter-btn').forEach((btn) => {
+        const active = btn.dataset.group === state.dexFilter;
+        btn.classList.toggle('bg-[#1e2438]', active);
+        btn.classList.toggle('text-white', active);
+        btn.classList.toggle('bg-white', !active);
+      });
+    }
+
+    // =========================================================================
+    // 5. EVENTS & ANIMATION
+    // =========================================================================
+
+    function startNewQuiz() {
+      state.page = 0;
+      state.answers = {};
+      renderQuizPage();
+      setView('quiz');
+    }
+
+    function copyResultText() {
+      const m = MEMBERS[state.viewingCode];
+      if (!m) return;
+      const text = `【Lads 相性診断】\n私と一番相性がいいLadsメンバーは ${m.code}『${m.name}（${m.role}）』でした！\n${m.title}\n${m.quote}`;
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text)
+          .then(() => showToast('診断結果をコピーしました！'))
+          .catch(() => fallbackCopy(text));
+      } else {
+        fallbackCopy(text);
+      }
+    }
+
+    function fallbackCopy(text) {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      try {
+        document.execCommand('copy');
+        showToast('診断結果をコピーしました！');
+      } catch (e) {
+        showToast('コピーに失敗しました。');
+      }
+      document.body.removeChild(ta);
+    }
+
+    function bindEvents() {
+      document.getElementById('navLogoBtn').addEventListener('click', () => {
+        renderHomeSavedBanner();
+        setView('home');
+      });
+      document.getElementById('navQuizBtn').addEventListener('click', () => {
+        if (Object.keys(state.answers).length > 0 && state.view !== 'quiz') {
+          renderQuizPage();
+          setView('quiz');
+        } else {
+          startNewQuiz();
+        }
+      });
+      document.getElementById('navDexBtn').addEventListener('click', () => {
+        renderDex();
+        setView('dex');
+      });
+
+      const startBtn = document.getElementById('startQuizBtn');
+      const dexHeroBtn = document.getElementById('openDexFromHeroBtn');
+      startBtn.addEventListener('mouseenter', () => {
+        startBtn.classList.add('active-choice');
+        dexHeroBtn.classList.remove('active-choice');
+      });
+      dexHeroBtn.addEventListener('mouseenter', () => {
+        dexHeroBtn.classList.add('active-choice');
+        startBtn.classList.remove('active-choice');
+      });
+      startBtn.addEventListener('click', startNewQuiz);
+      dexHeroBtn.addEventListener('click', () => {
+        renderDex();
+        setView('dex');
+      });
+      document.getElementById('viewSavedResultBtn').addEventListener('click', () => {
+        if (state.myResult) renderResultPage(state.myResult.code, true);
+      });
+
+      document.getElementById('questionsContainer').addEventListener('click', (e) => {
+        const btn = e.target.closest('.likert-btn');
+        if (!btn) return;
+        const qid = Number(btn.dataset.qid);
+        const val = Number(btn.dataset.val);
+        state.answers[qid] = val;
+
+        const card = document.getElementById(`qcard-${qid}`);
+        if (card) {
+          card.classList.add('answered');
+          card.classList.remove('unanswered-highlight');
+          card.querySelectorAll('.likert-btn').forEach((b) => {
+            b.classList.toggle('selected', Number(b.dataset.val) === val);
+          });
+        }
+
+        const answeredCount = Object.keys(state.answers).length;
+        document.getElementById('progressCount').textContent = `${answeredCount} / ${QUESTIONS.length} 回答済み`;
+        document.getElementById('progressBar').style.width = `${Math.round((answeredCount / QUESTIONS.length) * 100)}%`;
+
+        const nextCard = document.getElementById(`qcard-${qid + 1}`);
+        if (nextCard && state.answers[qid + 1] === undefined) {
+          setTimeout(() => nextCard.scrollIntoView({ behavior: 'smooth', block: 'center' }), 140);
+        }
+      });
+
+      document.getElementById('prevPageBtn').addEventListener('click', () => {
+        if (state.page > 0) {
+          state.page -= 1;
+          renderQuizPage();
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+      });
+
+      document.getElementById('nextPageBtn').addEventListener('click', () => {
+        const start = state.page * PAGE_SIZE;
+        const pageQs = QUESTIONS.slice(start, start + PAGE_SIZE);
+        const missing = pageQs.find((q) => state.answers[q.id] === undefined);
+        if (missing) {
+          const card = document.getElementById(`qcard-${missing.id}`);
+          if (card) {
+            card.classList.add('unanswered-highlight');
+            card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
+          showToast(`Q${missing.id} に回答してください！`);
+          return;
+        }
+        if (state.page < TOTAL_PAGES - 1) {
+          state.page += 1;
+          renderQuizPage();
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        } else {
+          const res = calculateResult();
+          state.myResult = res;
+          saveResultToStorage(res);
+          renderResultPage(res.code, true);
+        }
+      });
+
+      document.getElementById('randomFillBtn').addEventListener('click', () => {
+        const vals = [-3, -2, -1, 0, 1, 2, 3];
+        for (const q of QUESTIONS) state.answers[q.id] = vals[Math.floor(Math.random() * vals.length)];
+        const res = calculateResult();
+        state.myResult = res;
+        saveResultToStorage(res);
+        showToast('全30問をランダム回答して診断しました！');
+        renderResultPage(res.code, true);
+      });
+
+      document.getElementById('copyResultBtn').addEventListener('click', copyResultText);
+      document.getElementById('retakeQuizBtn').addEventListener('click', startNewQuiz);
+      document.getElementById('backToMyResultBtn').addEventListener('click', () => {
+        if (state.myResult) renderResultPage(state.myResult.code, true);
+      });
+
+      document.getElementById('compatibilityGrid').addEventListener('click', (e) => {
+        const card = e.target.closest('[data-open-member]');
+        if (!card) return;
+        const code = card.dataset.openMember;
+        renderResultPage(code, !!(state.myResult && state.myResult.code === code));
+      });
+
+      document.getElementById('dexGrid').addEventListener('click', (e) => {
+        const card = e.target.closest('[data-open-member]');
+        if (!card) return;
+        const code = card.dataset.openMember;
+        renderResultPage(code, !!(state.myResult && state.myResult.code === code));
+      });
+
+      document.getElementById('dexFilterBar').addEventListener('click', (e) => {
+        const btn = e.target.closest('.dex-filter-btn');
+        if (!btn) return;
+        state.dexFilter = btn.dataset.group;
+        renderDex();
+      });
+    }
+
+    let animInterval = null;
+    function startAnimation() {
+      if (animInterval) clearInterval(animInterval);
+      animInterval = setInterval(() => {
+        state.animTick += 1;
+        const frame = state.animTick % 6 === 5 ? 3 : (state.animTick % 2);
+        if (state.view === 'home') {
+          const code = MEMBER_ORDER[Math.floor(state.animTick / 5) % MEMBER_ORDER.length];
+          const m = MEMBERS[code];
+          drawMemberSprite(document.getElementById('heroMiniCanvas'), code, frame);
+          document.getElementById('heroMemberTicker').textContent = `${m.name}（${m.role}）ほか全8人`;
+        } else if (state.view === 'result' && state.viewingCode) {
+          const m = MEMBERS[state.viewingCode];
+          drawMemberSprite(document.getElementById('resultSpriteCanvas'), m.code, frame);
+          drawVignetteScene1(document.getElementById('vignetteScene1'), m.code, state.animTick);
+          drawVignetteScene2(document.getElementById('vignetteScene2'), m.code, m.compat.sub.code, state.animTick);
+        }
+      }, 550);
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      loadSavedResult();
+      bindEvents();
+      renderHomeSavedBanner();
+      drawMemberSprite(document.getElementById('heroMiniCanvas'), MEMBER_ORDER[0], 0);
+      startAnimation();
+    });
+  </script>
+</body>
+</html>
